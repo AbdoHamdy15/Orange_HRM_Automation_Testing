@@ -1,0 +1,41 @@
+[
+  {
+    "description": "Valid candidate name ",
+    "candidateNameInput": "a",
+    "candidateNameToSelect": "Manu K M",
+    "jobTitle": "",
+    "vacancy": "",
+    "hiringManager": "",
+    "status": "",
+    "fromDate": "",
+    "toDate": "",
+    "expectedResult": "table",
+    "expectedError": ""
+  },
+  {
+    "description": "Invalid candidate name",
+    "candidateNameInput": "Invalid Name",
+    "candidateNameToSelect": "Invalid Name",
+    "jobTitle": "",
+    "vacancy": "",
+    "hiringManager": "",
+    "status": "",
+    "fromDate": "",
+    "toDate": "",
+    "expectedResult": "",
+    "expectedError": "Invalid"
+  },
+  {
+    "description": "Valid scenario with all fields chosen",
+    "candidateNameInput": "a",
+    "candidateNameToSelect": "Manu K M",
+    "jobTitle": "Software Engineer",
+    "vacancy": "Senior QA Lead",
+    "hiringManager": "",
+    "status": "Shortlisted",
+    "fromDate": "2024-01-01",
+    "toDate": "2024-12-31",
+    "expectedResult": "table",
+    "expectedError": ""
+  }
+] 

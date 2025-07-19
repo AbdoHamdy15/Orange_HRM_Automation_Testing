@@ -1,0 +1,137 @@
+[
+  {
+    "description": "Valid: Search by Username only",
+    "username": "Admin",
+    "userRole": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "status": "",
+    "expectedResults": "Should find users with username Admin"
+  },
+  {
+    "description": "Valid: Search by User Role only",
+    "username": "",
+    "userRole": "Admin",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "status": "",
+    "expectedResults": "Should find users with Admin role"
+  },
+  {
+    "description": "Valid: Search by Employee Name only",
+    "username": "",
+    "userRole": "",
+    "employeeNameInput": "ra",
+    "employeeNameToSelect": "Ravi M B",
+    "status": "",
+    "expectedResults": "Should find users with employee name Ravi M B"
+  },
+  {
+    "description": "Valid: Search by Status only",
+    "username": "",
+    "userRole": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "status": "Enabled",
+    "expectedResults": "Should find enabled users"
+  },
+  {
+    "description": "Valid: Search by Username and User Role",
+    "username": "Admin",
+    "userRole": "Admin",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "status": "",
+    "expectedResults": "Should find Admin users with Admin role"
+  },
+  {
+    "description": "Valid: Search by Employee Name and Status",
+    "username": "",
+    "userRole": "",
+    "employeeNameInput": "am",
+    "employeeNameToSelect": "Amelia Brown",
+    "status": "Enabled",
+    "expectedResults": "Should find enabled users with employee name Amelia Brown"
+  },
+  {
+    "description": "Valid: Search by all fields",
+    "username": "Admin",
+    "userRole": "Admin",
+    "employeeNameInput": "ra",
+    "employeeNameToSelect": "Ravi M B",
+    "status": "Enabled",
+    "expectedResults": "Should find specific user with all criteria"
+  },
+  {
+    "description": "Negative: Search with non-existent Username",
+    "username": "NonExistentUser",
+    "userRole": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "status": "",
+    "expectedResults": "Should show no results found"
+  },
+  {
+    "description": "Negative: Search with non-existent Employee Name",
+    "username": "",
+    "userRole": "",
+    "employeeNameInput": "xyz",
+    "employeeNameToSelect": "xyz User",
+    "status": "Enabled",
+    "expectedResults": "Should show no results found"
+  },
+  {
+    "description": "Valid: Empty search (all fields empty)",
+    "username": "",
+    "userRole": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "status": "",
+    "expectedResults": "Should show all users"
+  },
+  {
+    "description": "Valid: Search by different User Roles",
+    "username": "",
+    "userRole": "ESS",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "status": "",
+    "expectedResults": "Should find ESS users"
+  },
+  {
+    "description": "Valid: Search by different Status",
+    "username": "",
+    "userRole": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "status": "Disabled",
+    "expectedResults": "Should find disabled users"
+  },
+  {
+    "description": "Valid: Partial Employee Name search",
+    "username": "",
+    "userRole": "",
+    "employeeNameInput": "Am",
+    "employeeNameToSelect": "Amelia Brown",
+    "status": "",
+    "expectedResults": "Should find employees with names starting with Am"
+  },
+  {
+    "description": "Valid: Case insensitive search",
+    "username": "admin",
+    "userRole": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "status": "",
+    "expectedResults": "Should find Admin regardless of case"
+  },
+  {
+    "description": "Valid: Search with leading/trailing spaces",
+    "username": "  Admin  ",
+    "userRole": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "status": "",
+    "expectedResults": "Should find Admin ignoring leading/trailing spaces"
+  }
+] 

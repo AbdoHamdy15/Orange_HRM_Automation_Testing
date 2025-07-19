@@ -1,0 +1,88 @@
+[
+  {
+    "description": "Default load, no data",
+    "fromDate": "2025-01-01",
+    "toDate": "2025-12-31",
+    "status": "",
+    "leaveType": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "subUnit": "",
+    "includePastEmployees": false,
+    "expectedResult": "No Records Found"
+  },
+  {
+    "description": "Change status to Rejected",
+    "fromDate": "2025-01-01",
+    "toDate": "2025-12-31",
+    "status": "Rejected",
+    "leaveType": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "subUnit": "",
+    "includePastEmployees": false,
+    "expectedResult": "No Records Found"
+  },
+  {
+    "description": "Future dates, no data",
+    "fromDate": "2026-01-01",
+    "toDate": "2026-12-31",
+    "status": "",
+    "leaveType": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "subUnit": "",
+    "includePastEmployees": false,
+    "expectedResult": "No Records Found"
+  },
+  {
+    "description": "Non-existent employee",
+    "fromDate": "2025-01-01",
+    "toDate": "2025-12-31",
+    "status": "",
+    "leaveType": "",
+    "employeeNameInput": "notfounduser",
+    "employeeNameToSelect": "notfounduser",
+    "subUnit": "",
+    "includePastEmployees": false,
+    "expectedResult": "No Records Found"
+  },
+  {
+    "description": "Change leave type only",
+    "fromDate": "2025-01-01",
+    "toDate": "2025-12-31",
+    "status": "",
+    "leaveType": "US - Personal",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "subUnit": "",
+    "includePastEmployees": false,
+    "expectedResult": "No Records Found"
+  },
+  {
+    "description": "Invalid employee name, should show Required error",
+    "fromDate": "2025-01-01",
+    "toDate": "2025-12-31",
+    "status": "",
+    "leaveType": "",
+    "employeeNameInput": "invaliduser",
+    "employeeNameToSelect": "invaliduser",
+    "subUnit": "",
+    "includePastEmployees": false,
+    "expectedErrorField": "Employee Name",
+    "expectedError": "Invalid"
+  },
+  {
+    "description": "Clear status selection, should show Required error",
+    "fromDate": "2025-01-01",
+    "toDate": "2025-12-31",
+    "status": "CLEAR",
+    "leaveType": "",
+    "employeeNameInput": "",
+    "employeeNameToSelect": "",
+    "subUnit": "",
+    "includePastEmployees": false,
+    "expectedErrorField": "Show Leave with Status",
+    "expectedError": "Required"
+  }
+] 
