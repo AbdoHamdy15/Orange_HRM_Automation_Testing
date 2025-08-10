@@ -1,80 +1,130 @@
 package pages.myinfo;
 
-import abstractComponents.AbstractComponent;
+import drivers.GUIDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import utilities.ElementActions;
+import utilities.Validations;
+import utilities.Waits;
 
-public class EmergencyContactsPage extends AbstractComponent {
+public class EmergencyContactsPage {
 
-    WebDriver driver;
+    private final GUIDriver driver;
+    private final ElementActions elementActions;
+    private final Validations validations;
+    private final Waits waits;
 
-    public EmergencyContactsPage(WebDriver driver) {
-        super(driver);
+    // Locators
+    private final By addButton = By.xpath("//h6[text()='Assigned Emergency Contacts']/following::button[normalize-space()='Add'][1]");
+    private final By nameInput = By.xpath("//label[contains(text(),'Name')]/following::input[1]");
+    private final By relationshipInput = By.xpath("//label[contains(text(),'Relationship')]/following::input[1]");
+    private final By homePhoneInput = By.xpath("//label[contains(text(),'Home')]/following::input[1]");
+    private final By mobileInput = By.xpath("//label[contains(text(),'Mobile')]/following::input[1]");
+    private final By workPhoneInput = By.xpath("//label[contains(text(),'Work')]/following::input[1]");
+    private final By saveButton = By.xpath("//button[normalize-space()='Save']");
+    private final By emergencyContactsHeader = By.xpath("//h6[text()='Assigned Emergency Contacts']");
+    private final By errorMessages = By.xpath("//span[contains(@class,'oxd-input-field-error-message') or contains(@class,'oxd-input-group__message')]");
+    private final By successToast = By.xpath("//div[contains(@class,'oxd-toast') and contains(.,'Success')]");
+
+    public EmergencyContactsPage(GUIDriver driver) {
         this.driver = driver;
+        this.elementActions = driver.element();
+        this.validations = driver.validate();
+        this.waits = new Waits(driver.get());
     }
 
-    // --- Actions ---
-
-    public void clickAddEmergencyContact() {
-        WebElement addEmergencyButton = driver.findElement(By.xpath("//h6[text()='Assigned Emergency Contacts']/following::button[normalize-space()='Add'][1]"));
-        waitForElementToAppear(addEmergencyButton);
-        addEmergencyButton.click();
+    // Navigation methods
+    @Step("Assert emergency contacts page is displayed")
+    public EmergencyContactsPage assertEmergencyContactsPageDisplayed() {
+        validations.validateTrue(elementActions.isDisplayed(emergencyContactsHeader), "Emergency Contacts page should be displayed");
+        return this;
     }
 
-    public void fillEmergencyContact(String name, String relationship, String homePhone, String mobile, String workPhone) {
-        WebElement nameInput = driver.findElement(By.xpath("//label[text()='Name']/following::input[1]"));
-        waitForElementToAppear(nameInput);
-        clearFieldReliably(nameInput);
-        nameInput.sendKeys(name);
-
-        WebElement relationshipInput = driver.findElement(By.xpath("//label[text()='Relationship']/following::input[1]"));
-        waitForElementToAppear(relationshipInput);
-        clearFieldReliably(relationshipInput);
-        relationshipInput.sendKeys(relationship);
-
-        WebElement homePhoneInput = driver.findElement(By.xpath("//label[text()='Home Telephone']/following::input[1]"));
-        waitForElementToAppear(homePhoneInput);
-        clearFieldReliably(homePhoneInput);
-        homePhoneInput.sendKeys(homePhone);
-
-        WebElement mobilePhoneInput = driver.findElement(By.xpath("//label[text()='Mobile']/following::input[1]"));
-        waitForElementToAppear(mobilePhoneInput);
-        clearFieldReliably(mobilePhoneInput);
-        mobilePhoneInput.sendKeys(mobile);
-
-        WebElement workPhoneInput = driver.findElement(By.xpath("//label[text()='Work Telephone']/following::input[1]"));
-        waitForElementToAppear(workPhoneInput);
-        clearFieldReliably(workPhoneInput);
-        workPhoneInput.sendKeys(workPhone);
+    // Action methods
+    @Step("Click add button")
+    public EmergencyContactsPage clickAdd() {
+        waits.waitForElementClickable(addButton);
+        elementActions.click(addButton);
+        return this;
     }
 
-    public void clickSave() {
-        WebElement saveButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        waitForElementToAppear(saveButton);
-        saveButton.click();
+    @Step("Enter contact name: {name}")
+    public EmergencyContactsPage enterName(String name) {
+        if (name != null && !name.isEmpty()) {
+            elementActions.clearField(nameInput);
+            elementActions.type(nameInput, name);
+        }
+        return this;
     }
 
-    public void addEmergencyContact(String name, String relationship, String homePhone, String mobile, String workPhone) {
-        clickAddEmergencyContact();
-        fillEmergencyContact(name, relationship, homePhone, mobile, workPhone);
-        clickSave();
+    @Step("Enter relationship: {relationship}")
+    public EmergencyContactsPage enterRelationship(String relationship) {
+        if (relationship != null && !relationship.isEmpty()) {
+            elementActions.clearField(relationshipInput);
+            elementActions.type(relationshipInput, relationship);
+        }
+        return this;
     }
 
-    public void uploadAttachment(String filePath, String comment) {
-        WebElement addAttachmentButton = driver.findElement(By.xpath("//h6[text()='Attachments']/following::button[normalize-space()='Add'][1]"));
-        WebElement fileInput = driver.findElement(By.cssSelector("input[type='file']"));
-        WebElement commentInput = driver.findElement(By.xpath("//label[text()='Comment']/following::textarea[1]"));
-        WebElement attachmentSaveButton = driver.findElement(By.xpath("//button[normalize-space()='Save']"));
-        waitForElementToAppear(addAttachmentButton);
-        addAttachment(addAttachmentButton, fileInput, commentInput, attachmentSaveButton, filePath, comment);
+    @Step("Enter home phone: {homePhone}")
+    public EmergencyContactsPage enterHomePhone(String homePhone) {
+        if (homePhone != null && !homePhone.isEmpty()) {
+            elementActions.clearField(homePhoneInput);
+            elementActions.type(homePhoneInput, homePhone);
+        }
+        return this;
     }
-    
-    public String waitForToastAndGetMessage() {
-        return super.waitForToastAndGetMessage();
+
+    @Step("Enter mobile: {mobile}")
+    public EmergencyContactsPage enterMobile(String mobile) {
+        if (mobile != null && !mobile.isEmpty()) {
+            elementActions.clearField(mobileInput);
+            elementActions.type(mobileInput, mobile);
+        }
+        return this;
     }
-    
-    public boolean isErrorMessageDisplayed(String errorText) {
-        return super.isErrorMessageDisplayed(errorText);
+
+    @Step("Enter work phone: {workPhone}")
+    public EmergencyContactsPage enterWorkPhone(String workPhone) {
+        if (workPhone != null && !workPhone.isEmpty()) {
+            elementActions.clearField(workPhoneInput);
+            elementActions.type(workPhoneInput, workPhone);
+        }
+        return this;
+    }
+
+    @Step("Click save button")
+    public EmergencyContactsPage clickSave() {
+        elementActions.click(saveButton);
+        return this;
+    }
+
+    // Complete workflow
+    @Step("Add emergency contact: {name}, {relationship}, {homePhone}, {mobile}, {workPhone}")
+    public EmergencyContactsPage addEmergencyContact(String name, String relationship, String homePhone, String mobile, String workPhone) {
+        return clickAdd()
+                .enterName(name)
+                .enterRelationship(relationship)
+                .enterHomePhone(homePhone)
+                .enterMobile(mobile)
+                .enterWorkPhone(workPhone)
+                .clickSave();
+    }
+
+    // Validation methods
+    @Step("Assert specific error message is displayed: {expectedError}")
+    public EmergencyContactsPage assertSpecificErrorDisplayed(String expectedError) {
+        String actualError = validations.getActualErrorText(expectedError);
+        validations.isErrorMessageDisplayed(actualError);
+        return this;
+    }
+
+    @Step("Assert success toast is displayed")
+    public EmergencyContactsPage assertSuccessToastDisplayed() {
+        // Wait for toast message to appear
+        String toastMessage = waits.waitForToastAndGetMessage();
+        validations.validateTrue(toastMessage != null && toastMessage.contains("Success"),
+            "Success toast message should be displayed");
+        return this;
     }
 }

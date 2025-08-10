@@ -1,75 +1,129 @@
 package pages;
 
-import abstractComponents.AbstractComponent;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import drivers.GUIDriver;
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import utilities.ElementActions;
+import utilities.Validations;
+import utilities.Waits;
 
-import java.util.List;
+public class LoginPage {
+    
+    // Variables
+    private final GUIDriver driver;
+    private final ElementActions elementActions;
+    private final Validations validations;
+    private final Waits waits;
+    
+    // Locators
+    private final By usernameField = By.name("username");
+    private final By passwordField = By.name("password");
+    private final By loginButton = By.cssSelector("button.orangehrm-login-button");
+    private final By errorMessage = By.cssSelector(".oxd-alert-content-text");
+    private final By requiredMessages = By.xpath("//span[contains(@class, 'oxd-input-field-error-message')]");
+    private final By loginForm = By.cssSelector("div.orangehrm-login-form");
 
-public class LoginPage extends AbstractComponent {
-
-    WebDriver driver;
-
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    // Constructor
+    public LoginPage(GUIDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        this.elementActions = driver.element();
+        this.validations = driver.validate();
+        this.waits = new Waits(driver.get());
     }
 
-    @FindBy(name = "username")
-    private WebElement usernameField;
-
-    @FindBy(name = "password")
-    private WebElement passwordField;
-
-    @FindBy(css = "button.orangehrm-login-button")
-    private WebElement loginButton;
-
-    @FindBy(className = "oxd-alert-content-text")
-    private WebElement errorMessage;
-
-    @FindAll(@FindBy(xpath = "//span[contains(@class, 'oxd-input-field-error-message')]"))
-    private List<WebElement> requiredMessages;
-
-    public void enterUsername(String username) {
-        clearFieldReliably(usernameField);
-        usernameField.sendKeys(username);
+    // Navigation
+    @Step("Navigate to OrangeHRM login page")
+    public LoginPage navigateToLoginPage() {
+        driver.browser().navigateToURL("https://opensource-demo.orangehrmlive.com/");
+        // Wait for page to load completely
+        waits.waitForElementVisible(loginForm);
+        return this;
     }
 
-    public void enterPassword(String password) {
-        clearFieldReliably(passwordField);
-        passwordField.sendKeys(password);
+    // Actions
+    @Step("Enter username: {username}")
+    public LoginPage enterUsername(String username) {
+        elementActions.clearField(usernameField);
+        elementActions.type(usernameField, username);
+        return this;
     }
 
-    public void clickLogin() {
-        loginButton.click();
+    @Step("Enter password: {password}")
+    public LoginPage enterPassword(String password) {
+        elementActions.clearField(passwordField);
+        elementActions.type(passwordField, password);
+        return this;
     }
 
+    @Step("Click login button")
+    public LoginPage clickLoginButton() {
+        elementActions.click(loginButton);
+        return this;
+    }
+
+    // Getters
+    @Step("Get error message")
     public String getErrorMessage() {
-        waitForElementToAppear(errorMessage);
-        return errorMessage.getText();
+        waits.waitForElementVisible(errorMessage);
+        return elementActions.getText(errorMessage);
     }
 
-    public String getUsernameRequiredMessage() {
-        waitForElementToAppear(requiredMessages.get(0));
-        return requiredMessages.get(0).getText();
+    @Step("Get required field messages")
+    public String getRequiredMessages() {
+        waits.waitForElementVisible(requiredMessages);
+        return elementActions.getText(requiredMessages);
     }
 
-    public String getPasswordRequiredMessage() {
-        if (requiredMessages.size() > 1) {
-            return requiredMessages.get(1).getText();
-        } else {
-            return requiredMessages.get(0).getText();
-        }
+    // Validations
+    @Step("Assert login page is displayed")
+    public LoginPage assertLoginPageDisplayed() {
+        String currentUrl = driver.browser().getCurrentURL();
+        validations.validateTrue(currentUrl.contains("/auth/login"), "Login page URL should contain '/auth/login' but was '" + currentUrl + "'");
+        return this;
     }
 
-    public DashboardPage login(String username, String password) {
-        enterUsername(username);
-        enterPassword(password);
-        clickLogin();
+    // Debug method
+    public boolean isFormVisible() {
+        return elementActions.isDisplayed(loginForm);
+    }
+
+    @Step("Assert invalid credentials error: {expectedError}")
+    public LoginPage assertInvalidCredentialsError(String expectedError) {
+        waits.waitForElementVisible(errorMessage);
+        String actualError = elementActions.getText(errorMessage);
+        validations.validateTrue(actualError.equals(expectedError), 
+            "Invalid credentials error should be '" + expectedError + "' but was '" + actualError + "'");
+        return this;
+    }
+
+    @Step("Assert required field error: {expectedError}")
+    public LoginPage assertRequiredFieldError(String expectedError) {
+        waits.waitForElementVisible(requiredMessages);
+        String actualError = elementActions.getText(requiredMessages);
+        validations.validateTrue(actualError.equals(expectedError), 
+            "Required field error should be '" + expectedError + "' but was '" + actualError + "'");
+        return this;
+    }
+
+    @Step("Assert successful login")
+    public DashboardPage assertSuccessfulLogin() {
+        validations.validatePageUrl("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
         return new DashboardPage(driver);
+    }
+
+    // Complete workflows
+    @Step("Perform login with username: {username} and password: {password}")
+    public DashboardPage login(String username, String password) {
+        return enterUsername(username)
+                .enterPassword(password)
+                .clickLoginButton()
+                .assertSuccessfulLogin();
+    }
+
+    @Step("Perform invalid login with username: {username} and password: {password}")
+    public LoginPage invalidLogin(String username, String password) {
+        return enterUsername(username)
+                .enterPassword(password)
+                .clickLoginButton();
     }
 }

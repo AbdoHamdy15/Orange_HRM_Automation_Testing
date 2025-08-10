@@ -1,10 +1,11 @@
-package com.swaglabs.drivers;
+package drivers;
 
-import com.swaglabs.utils.PropertiesUtils;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import utilities.LogsUtil;
 
 import java.util.Map;
 
@@ -17,10 +18,9 @@ public class EdgeFactory extends AbstractDriver implements WebDriverOptionsAbstr
         edgeOptions.addArguments("--disable-infobars");
         edgeOptions.addArguments("--disable-notifications");
         edgeOptions.addArguments("--remote-allow-origins=*");
-        if (!PropertiesUtils.getPropertyValue("executionType").equalsIgnoreCase("local")) {
-            edgeOptions.addArguments("--headless");
-        }
-        Map<String, Object> edgePrefs = Map.of("profile.default_content_setting_values.notifications", 2,
+        //edgeoptions.addArguments("--headless"); // Uncomment if you want to run in headless mode
+        Map<String, Object> edgePrefs = Map.of(
+                "profile.default_content_setting_values.notifications", 2,
                 "credentials_enable_service", false,
                 "profile.password_manager_enabled", false,
                 "autofill.profile_enabled", false);

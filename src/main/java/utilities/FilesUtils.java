@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class FilesUtil {
-    private FilesUtil() {
+public class FilesUtils {
+    private FilesUtils() {
         super();
     }
 
@@ -33,23 +33,13 @@ public class FilesUtil {
             return;
         }
 
-        File[] filesList = dirPath.listFiles();
-        if (filesList == null) {
-            LogsUtil.warn("Failed to list files in: " + dirPath);
-            return;
-        }
-
-        for (File file : filesList) {
-
-            if (file.isDirectory()) {
-                deleteFiles(file);
-            } else {
-                try {
-                    Files.delete(file.toPath());
-                } catch (IOException e) {
-                    LogsUtil.error("Failed to delete file: " + file);
-                }
-            }
+        LogsUtil.info("Deleting directory: " + dirPath.getPath());
+        
+        try {
+            FileUtils.deleteDirectory(dirPath);
+            LogsUtil.info("Directory deleted successfully: " + dirPath);
+        } catch (IOException e) {
+            LogsUtil.error("Failed to delete directory: " + dirPath + " - " + e.getMessage());
         }
     }
 
@@ -85,6 +75,36 @@ public class FilesUtil {
             }
         } else {
             LogsUtil.info("Directory already exists: " + path);
+        }
+    }
+
+    public static void copyDirectory(File sourceDir, File destDir) {
+        try {
+            if (sourceDir.exists() && sourceDir.isDirectory()) {
+                FileUtils.copyDirectory(sourceDir, destDir);
+                LogsUtil.info("Directory copied successfully from " + sourceDir + " to " + destDir);
+            } else {
+                LogsUtil.warn("Source directory does not exist or is not a directory: " + sourceDir);
+            }
+        } catch (IOException e) {
+            LogsUtil.error("Failed to copy directory: " + e.getMessage());
+        }
+    }
+
+    public static void copyFolder(File sourceDir, File destDir) {
+        copyDirectory(sourceDir, destDir);
+    }
+
+    public static void deleteDirectory(File dir) {
+        try {
+            if (dir.exists()) {
+                FileUtils.deleteDirectory(dir);
+                LogsUtil.info("Directory deleted successfully: " + dir);
+            } else {
+                LogsUtil.warn("Directory does not exist: " + dir);
+            }
+        } catch (IOException e) {
+            LogsUtil.error("Failed to delete directory: " + e.getMessage());
         }
     }
 }

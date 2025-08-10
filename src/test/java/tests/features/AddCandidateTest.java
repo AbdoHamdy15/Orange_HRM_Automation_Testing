@@ -1,4 +1,4 @@
-package tests;
+package tests.features;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -39,7 +39,7 @@ public class AddCandidateTest {
         addCandidatePage = recruitmentPage.clickAdd();
     }
 
-    @Test(dataProvider = "addCandidateData", groups = {"management", "recruitment", "regression"})
+    @Test(dataProvider = "addCandidateData", groups = {"management", "recruitment"})
     @Story("Add New Candidate")
     @Description("Test adding candidate with valid information from data provider")
     @Severity(SeverityLevel.CRITICAL)

@@ -1,112 +1,139 @@
 package pages.myinfo;
 
-import abstractComponents.AbstractComponent;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import drivers.GUIDriver;
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import utilities.ElementActions;
+import utilities.Validations;
+import utilities.Waits;
 
-public class MembershipsPage extends AbstractComponent {
+public class MembershipsPage {
 
-    WebDriver driver;
+    private final GUIDriver driver;
+    private final ElementActions elementActions;
+    private final Validations validations;
+    private final Waits waits;
 
-    public MembershipsPage(WebDriver driver) {
-        super(driver);
+    // Locators
+    private final By addButton = By.xpath("//button[normalize-space()='Add']");
+    private final By membershipDropdown = By.xpath("//label[text()='Membership']/following::div[contains(@class,'oxd-select-wrapper')][1]");
+    private final By subscriptionPaidByDropdown = By.xpath("//label[text()='Subscription Paid By']/following::div[contains(@class,'oxd-select-wrapper')][1]");
+    private final By subscriptionAmountInput = By.xpath("//label[text()='Subscription Amount']/following::input[1]");
+    private final By currencyDropdown = By.xpath("//label[text()='Currency']/following::div[contains(@class,'oxd-select-wrapper')][1]");
+    private final By commenceDateInput = By.xpath("//label[contains(text(),'Commence')]/following::input[1]");
+    private final By renewalDateInput = By.xpath("//label[contains(text(),'Renewal')]/following::input[1]");
+    private final By saveButton = By.xpath("//button[normalize-space()='Save']");
+    private final By membershipsHeader = By.xpath("//h6[text()='Assigned Memberships']");
+    private final By errorMessages = By.xpath("//span[contains(@class,'oxd-input-field-error-message') or contains(@class,'oxd-input-group__message')]");
+    private final By successToast = By.xpath("//div[contains(@class,'oxd-toast') and contains(.,'Success')]");
+
+    public MembershipsPage(GUIDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        this.elementActions = driver.element();
+        this.validations = driver.validate();
+        this.waits = new Waits(driver.get());
     }
 
-    // Membership Info
-    @FindBy(xpath = "//label[text()='Membership']/following::div[contains(@class,'oxd-select-wrapper')][1]")
-    WebElement membershipDropdown;
-
-    @FindBy(xpath = "//label[text()='Subscription Paid By']/following::div[contains(@class,'oxd-select-wrapper')][1]")
-    WebElement subscriptionPaidByDropdown;
-
-    @FindBy(xpath = "//label[text()='Subscription Amount']/following::input[1]")
-    WebElement subscriptionAmountInput;
-
-    @FindBy(xpath = "//label[text()='Currency']/following::div[contains(@class,'oxd-select-wrapper')][1]")
-    WebElement currencyDropdown;
-
-    @FindBy(xpath = "//label[text()='Commence Date']/following::input[1]")
-    WebElement commenceDateInput;
-
-    @FindBy(xpath = "//label[text()='Renewal Date']/following::input[1]")
-    WebElement renewalDateInput;
-
-    @FindBy(xpath = "//label[text()='Commence Date']/following::i[@class='oxd-icon bi-calendar oxd-date-input-icon'][1]")
-    WebElement commenceDateCalendarIcon;
-
-    @FindBy(xpath = "//label[text()='Renewal Date']/following::i[@class='oxd-icon bi-calendar oxd-date-input-icon'][1]")
-    WebElement renewalDateCalendarIcon;
-
-    @FindBy(xpath = "//button[normalize-space()='Save']")
-    WebElement saveButton;
-
-    @FindBy(xpath = "//button[normalize-space()='Add']")
-    WebElement addButton;
-
-    // Attachment
-    @FindBy(xpath = "//h6[text()='Attachments']/following::button[normalize-space()='Add'][1]")
-    WebElement addAttachmentButton;
-
-    @FindBy(css = "input[type='file']")
-    WebElement fileInput;
-
-    @FindBy(xpath = "//label[text()='Comment']/following::textarea[1]")
-    WebElement commentInput;
-
-    @FindBy(xpath = "//div[@class='oxd-form-actions']//button[normalize-space()='Save']")
-    WebElement attachmentSaveButton;
-
-    // Methods
-
-    public void selectMembership(String membership) {
-        selectFromDropdown(membershipDropdown, membership);
+    // Navigation methods
+    @Step("Assert memberships page is displayed")
+    public MembershipsPage assertMembershipsPageDisplayed() {
+        validations.validateTrue(elementActions.isDisplayed(membershipsHeader), "Memberships page should be displayed");
+        return this;
     }
 
-    public void selectPaidBy(String paidBy) {
-        selectFromDropdown(subscriptionPaidByDropdown, paidBy);
+    // Action methods
+    @Step("Click add button")
+    public MembershipsPage clickAdd() {
+        waits.waitForElementClickable(addButton);
+        elementActions.click(addButton);
+        return this;
     }
 
-    public void enterSubscriptionAmount(String amount) {
-        clearFieldReliably(subscriptionAmountInput);
-        subscriptionAmountInput.sendKeys(amount);
+    @Step("Select membership: {membership}")
+    public MembershipsPage selectMembership(String membership) {
+        if (membership != null && !membership.isEmpty()) {
+            elementActions.selectFromDropdown(membershipDropdown, membership);
+        }
+        return this;
     }
 
-    public void selectCurrency(String currency) {
-        selectFromDropdown(currencyDropdown, currency);
+    @Step("Select subscription paid by: {paidBy}")
+    public MembershipsPage selectSubscriptionPaidBy(String paidBy) {
+        if (paidBy != null && !paidBy.isEmpty()) {
+            elementActions.selectFromDropdown(subscriptionPaidByDropdown, paidBy);
+        }
+        return this;
     }
 
-    public void setCommenceDate(String day, String month, String year) {
-        selectDateFromCalendar(commenceDateCalendarIcon, day, month, year);
+    @Step("Enter subscription amount: {amount}")
+    public MembershipsPage enterSubscriptionAmount(String amount) {
+        if (amount != null && !amount.isEmpty()) {
+            elementActions.clearField(subscriptionAmountInput);
+            elementActions.type(subscriptionAmountInput, amount);
+        }
+        return this;
     }
 
-    public void setRenewalDate(String day, String month, String year) {
-        selectDateFromCalendar(renewalDateCalendarIcon, day, month, year);
+    @Step("Select currency: {currency}")
+    public MembershipsPage selectCurrency(String currency) {
+        if (currency != null && !currency.isEmpty()) {
+            elementActions.selectFromDropdown(currencyDropdown, currency);
+        }
+        return this;
     }
 
-    public void clickSave() {
-        saveButton.click();
+    @Step("Set commence date: {commenceDate}")
+    public MembershipsPage setCommenceDate(String commenceDate) {
+        if (commenceDate != null && !commenceDate.isEmpty()) {
+            elementActions.clearField(commenceDateInput);
+            elementActions.type(commenceDateInput, commenceDate);
+        }
+        return this;
     }
 
-    public void clickAdd() {
-        addButton.click();
+    @Step("Set renewal date: {renewalDate}")
+    public MembershipsPage setRenewalDate(String renewalDate) {
+        if (renewalDate != null && !renewalDate.isEmpty()) {
+            elementActions.clearField(renewalDateInput);
+            elementActions.type(renewalDateInput, renewalDate);
+        }
+        return this;
     }
 
-    public void uploadAttachment(String filePath, String comment) {
-        addAttachment(addAttachmentButton, fileInput, commentInput, attachmentSaveButton, filePath, comment);
+    @Step("Click save button")
+    public MembershipsPage clickSave() {
+        elementActions.click(saveButton);
+        return this;
     }
 
-    public void fillMembershipDetails(String membership, String paidBy, String amount, String currency,
-                                      String commenceDay, String commenceMonth, String commenceYear,
-                                      String renewalDay, String renewalMonth, String renewalYear) {
-        selectMembership(membership);
-        selectPaidBy(paidBy);
-        enterSubscriptionAmount(amount);
-        selectCurrency(currency);
-        setCommenceDate(commenceDay, commenceMonth, commenceYear);
-        setRenewalDate(renewalDay, renewalMonth, renewalYear);
-        clickSave();
+    // Complete workflow
+    @Step("Add membership: {membership}, {paidBy}, {amount}, {currency}, {commenceDate}, {renewalDate}")
+    public MembershipsPage addMembership(String membership, String paidBy, String amount, String currency, 
+                                         String commenceDate, String renewalDate) {
+        return clickAdd()
+                .selectMembership(membership)
+                .selectSubscriptionPaidBy(paidBy)
+                .enterSubscriptionAmount(amount)
+                .selectCurrency(currency)
+                .setCommenceDate(commenceDate)
+                .setRenewalDate(renewalDate)
+                .clickSave();
+    }
+
+    // Validation methods
+    @Step("Assert specific error message is displayed: {expectedError}")
+    public MembershipsPage assertSpecificErrorDisplayed(String expectedError) {
+        String actualError = validations.getActualErrorText(expectedError);
+        validations.isErrorMessageDisplayed(actualError);
+        return this;
+    }
+
+    @Step("Assert success toast is displayed")
+    public MembershipsPage assertSuccessToastDisplayed() {
+        // Wait for toast message to appear
+        String toastMessage = waits.waitForToastAndGetMessage();
+        validations.validateTrue(toastMessage != null && toastMessage.contains("Success"),
+            "Success toast message should be displayed");
+        return this;
     }
 }

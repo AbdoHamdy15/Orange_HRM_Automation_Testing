@@ -1,20 +1,18 @@
-package tests;
+package tests.features;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
 import io.qameta.allure.SeverityLevel;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.LoginPage;
 
 @Epic("OrangeHRM Application")
 @Feature("Authentication")
 @Story("User Login")
+@Listeners(listeners.TestNGListeners.class)
 public class LoginTest {
 
-    private static final String VALID_USERNAME = "Admin";
+    private static final String VALID_USERNAME = "Admin1";
     private static final String VALID_PASSWORD = "admin123";
     private GUIDriver driver;
 
@@ -35,7 +33,7 @@ public class LoginTest {
                 .login(VALID_USERNAME, VALID_PASSWORD);
     }
 
-    @Test(dataProvider = "invalidLoginData", priority = 2, groups = {"auth", "login", "regression"})
+    @Test(dataProvider = "invalidLoginData", priority = 2, groups = {"auth", "login"})
     @Story("Invalid Login")
     @Description("Test login with invalid credentials and verify error messages")
     @Severity(SeverityLevel.NORMAL)

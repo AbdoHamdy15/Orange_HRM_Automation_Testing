@@ -1,106 +1,135 @@
 package pages;
 
-import abstractComponents.AbstractComponent;
+import drivers.GUIDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import utilities.ElementActions;
+import utilities.Validations;
+import utilities.Waits;
+
 import java.util.List;
 
-public class AddUserPage extends AbstractComponent {
+public class AddUserPage {
+    
+    // Variables
+    private final GUIDriver driver;
+    private final ElementActions elementActions;
+    private final Validations validations;
+    private final Waits waits;
+    
+    // Locators
+    private final By userRoleDropdown = By.xpath("//label[text()='User Role']/following::div[@class='oxd-select-wrapper'][1]");
+    private final By employeeNameInput = By.xpath("//label[text()='Employee Name']/following::input[1]");
+    private final By statusDropdown = By.xpath("//label[text()='Status']/following::div[@class='oxd-select-wrapper'][1]");
+    private final By usernameInput = By.xpath("//label[text()='Username']/following::input[1]");
+    private final By passwordInput = By.xpath("//label[text()='Password']/following::input[1]");
+    private final By confirmPasswordInput = By.xpath("//label[text()='Confirm Password']/following::input[1]");
+    private final By saveButton = By.xpath("//button[contains(@class, 'oxd-button') and text()=' Save ']");
+    private final By addUserHeader = By.xpath("//h6[text()='Add User']");
+    private final By errorMessages = By.xpath("//span[contains(@class,'oxd-input-field-error-message') or contains(@class,'oxd-input-group__message')]");
+    private final By successToast = By.xpath("//div[contains(@class,'oxd-toast') and contains(.,'Success')]");
 
-    WebDriver driver;
-
-    public AddUserPage(WebDriver driver) {
-        super(driver);
+    // Constructor
+    public AddUserPage(GUIDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        this.elementActions = driver.element();
+        this.validations = driver.validate();
+        this.waits = new Waits(driver.get());
+        waits.waitForElementVisible(addUserHeader);
     }
 
-    @FindBy(xpath = "//label[text()='User Role']/following::div[@class='oxd-select-wrapper'][1]")
-    WebElement userRoleDropdown;
-
-    @FindBy(xpath = "//label[text()='Employee Name']/following::input[1]")
-    WebElement employeeNameInput;
-
-    @FindBy(xpath = "//label[text()='Status']/following::div[@class='oxd-select-wrapper'][1]")
-    WebElement statusDropdown;
-
-    @FindBy(xpath = "//label[text()='Username']/following::input[1]")
-    WebElement usernameInput;
-
-    @FindBy(xpath = "//label[text()='Password']/following::input[1]")
-    WebElement passwordInput;
-
-    @FindBy(xpath = "//label[text()='Confirm Password']/following::input[1]")
-    WebElement confirmPasswordInput;
-
-    @FindBy(xpath = "//button[contains(@class, 'oxd-button') and text()=' Save ']")
-    WebElement saveButton;
-
-    public void selectUserRole(String roleText) {
-        userRoleDropdown.click();
-        WebElement option = driver.findElement(By.xpath("//div[@role='listbox']//span[text()='" + roleText + "']"));
-        option.click();
+    // Validations
+    @Step("Assert add user page is displayed")
+    public AddUserPage assertAddUserPageDisplayed() {
+        validations.validateTrue(elementActions.isDisplayed(addUserHeader), "Add User page should be displayed");
+        return this;
     }
 
-    public void enterEmployeeName(String inputText, String nameToSelect) {
-        enterAutoSuggestField(employeeNameInput, inputText, nameToSelect);
-    }
-
-    public void selectStatus(String statusText) {
-        statusDropdown.click();
-        WebElement option = driver.findElement(By.xpath("//div[@role='listbox']//span[text()='" + statusText + "']"));
-        option.click();
-    }
-
-    public void enterUsername(String username) {
-        clearFieldReliably(usernameInput);
-        usernameInput.sendKeys(username);
-    }
-
-    public void enterPassword(String password) {
-        clearFieldReliably(passwordInput);
-        passwordInput.sendKeys(password);
-    }
-
-    public void enterConfirmPassword(String password) {
-        clearFieldReliably(confirmPasswordInput);
-        confirmPasswordInput.sendKeys(password);
-    }
-
-    public void clickSave() {
-        saveButton.click();
-    }
-
-    public void addNewUser(String role, String employeeInputText, String employeeNameToSelect, String status, String username, String password) {
-        selectUserRole(role);
-        enterEmployeeName(employeeInputText, employeeNameToSelect);
-        selectStatus(status);
-        enterUsername(username);
-        enterPassword(password);
-        enterConfirmPassword(password);
-        clickSave();
-    }
-
-    public boolean isErrorDisplayed(String expectedError) {
-        List<WebElement> errors = driver.findElements(By.xpath("//span[contains(@class,'oxd-input-field-error-message') or contains(@class,'oxd-input-group__message')]"));
-        for (WebElement error : errors) {
-            System.out.println("Actual error message: '" + error.getText().trim() + "'");
-            if (error.getText().trim().toLowerCase().contains(expectedError.toLowerCase())) {
-                return true;
-            }
+    // Actions
+    @Step("Select user role: {roleText}")
+    public AddUserPage selectUserRole(String roleText) {
+        if (roleText != null && !roleText.isEmpty()) {
+            elementActions.selectFromDropdown(userRoleDropdown, roleText);
         }
-        return false;
+        return this;
     }
 
-    public boolean isSuccessToastDisplayed() {
-        try {
-            WebElement toast = driver.findElement(By.xpath("//div[contains(@class,'oxd-toast') and contains(.,'Success')]"));
-            return toast.isDisplayed();
-        } catch (Exception e) {
-            return false;
+    @Step("Enter employee name: {inputText} and select: {nameToSelect}")
+    public AddUserPage enterEmployeeName(String inputText, String nameToSelect) {
+        if (inputText != null && !inputText.isEmpty()) {
+            elementActions.enterAutoSuggestField(employeeNameInput, inputText, nameToSelect);
         }
+        return this;
+    }
+
+    @Step("Select status: {statusText}")
+    public AddUserPage selectStatus(String statusText) {
+        if (statusText != null && !statusText.isEmpty()) {
+            elementActions.selectFromDropdown(statusDropdown, statusText);
+        }
+        return this;
+    }
+
+    @Step("Enter username: {username}")
+    public AddUserPage enterUsername(String username) {
+        if (username != null && !username.isEmpty()) {
+            elementActions.clearField(usernameInput);
+            elementActions.type(usernameInput, username);
+        }
+        return this;
+    }
+
+    @Step("Enter password: {password}")
+    public AddUserPage enterPassword(String password) {
+        if (password != null && !password.isEmpty()) {
+            elementActions.clearField(passwordInput);
+            elementActions.type(passwordInput, password);
+        }
+        return this;
+    }
+
+    @Step("Enter confirm password: {password}")
+    public AddUserPage enterConfirmPassword(String password) {
+        if (password != null && !password.isEmpty()) {
+            elementActions.clearField(confirmPasswordInput);
+            elementActions.type(confirmPasswordInput, password);
+        }
+        return this;
+    }
+
+    @Step("Click save button")
+    public AddUserPage clickSave() {
+        elementActions.click(saveButton);
+        return this;
+    }
+
+    // Complete workflows
+    @Step("Add new user with role: {role}, employee: {employeeInputText}, status: {status}")
+    public AddUserPage addNewUser(String role, String employeeInputText, String employeeNameToSelect, String status, String username, String password) {
+        return selectUserRole(role)
+                .enterEmployeeName(employeeInputText, employeeNameToSelect)
+                .selectStatus(status)
+                .enterUsername(username)
+                .enterPassword(password)
+                .enterConfirmPassword(password)
+                .clickSave();
+    }
+
+    // Validation methods
+    @Step("Assert specific error message is displayed: {expectedError}")
+    public AddUserPage assertSpecificErrorDisplayed(String expectedError) {
+        String actualError = validations.getActualErrorText(expectedError);
+        validations.isErrorMessageDisplayed(actualError);
+        return this;
+    }
+
+    @Step("Assert success toast is displayed")
+    public AddUserPage assertSuccessToastDisplayed() {
+        // Wait for toast message to appear
+        String toastMessage = waits.waitForToastAndGetMessage();
+        validations.validateTrue(toastMessage != null && toastMessage.contains("Success"),
+            "Success toast message should be displayed");
+        return this;
     }
 }

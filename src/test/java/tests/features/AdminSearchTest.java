@@ -1,4 +1,4 @@
-package tests;
+package tests.features;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -35,7 +35,7 @@ public class AdminSearchTest {
         adminPage = dashboard.goToAdmin();
     }
 
-    @Test(dataProvider = "adminSearchData", groups = {"search", "admin", "regression"})
+    @Test(dataProvider = "adminSearchData", groups = {"search", "admin"})
     @Story("Search Admin Users")
     @Description("Test admin search functionality with various filters")
     @Severity(SeverityLevel.NORMAL)

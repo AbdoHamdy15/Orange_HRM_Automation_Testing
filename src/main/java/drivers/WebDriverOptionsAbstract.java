@@ -1,4 +1,4 @@
-package com.swaglabs.drivers;
+package drivers;
 
 
 public interface WebDriverOptionsAbstract<T> {

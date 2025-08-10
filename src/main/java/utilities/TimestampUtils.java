@@ -1,4 +1,4 @@
-package com.swaglabs.utils;
+package utilities;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

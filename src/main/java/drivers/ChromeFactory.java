@@ -1,6 +1,5 @@
-package com.swaglabs.drivers;
+package drivers;
 
-import com.swaglabs.utils.PropertiesUtils;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,10 +16,9 @@ public class ChromeFactory extends AbstractDriver implements WebDriverOptionsAbs
         options.addArguments("--disable-infobars");
         options.addArguments("--disable-notifications");
         options.addArguments("--remote-allow-origins=*");
-        if (!PropertiesUtils.getPropertyValue("executionType").equalsIgnoreCase("local")) {
-            options.addArguments("--headless");
-        }
-        Map<String, Object> prefs = Map.of("profile.default_content_setting_values.notifications", 2,
+        //options.addArguments("--headless"); // Uncomment if you want to run in headless mode
+        Map<String, Object> prefs = Map.of(
+                "profile.default_content_setting_values.notifications", 2,
                 "credentials_enable_service", false,
                 "profile.password_manager_enabled", false,
                 "autofill.profile_enabled", false);

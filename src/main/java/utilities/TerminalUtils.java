@@ -1,4 +1,4 @@
-package com.swaglabs.utils;
+package utilities;
 
 public class TerminalUtils {
     //allure, generate, //path ,-o ,//path ,--single-file

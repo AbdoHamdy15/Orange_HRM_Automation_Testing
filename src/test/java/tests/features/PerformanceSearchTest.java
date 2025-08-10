@@ -1,4 +1,4 @@
-package tests;
+package tests.features;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -31,7 +31,7 @@ public class PerformanceSearchTest {
         performancePage = new PerformancePage(driver);
     }
 
-    @Test(groups = {"search", "performance", "regression"})
+    @Test(groups = {"search", "performance"})
     @Story("Empty Search")
     @Description("Test performance search with no filters applied")
     @Severity(SeverityLevel.MINOR)
@@ -40,7 +40,7 @@ public class PerformanceSearchTest {
                 .assertNoRecordsFound();
     }
 
-    @Test(groups = {"search", "performance", "regression"})
+    @Test(groups = {"search", "performance"})
     @Story("Invalid Employee Name")
     @Description("Test performance search with invalid employee name")
     @Severity(SeverityLevel.NORMAL)
@@ -50,7 +50,7 @@ public class PerformanceSearchTest {
                        .assertInvalidErrorForEmployeeName();
     }
 
-    @Test(groups = {"search", "performance", "regression"})
+    @Test(groups = {"search", "performance"})
     @Story("Valid Employee Name")
     @Description("Test performance search with valid employee name")
     @Severity(SeverityLevel.NORMAL)
@@ -60,7 +60,7 @@ public class PerformanceSearchTest {
                        .assertNoRecordsFound();
     }
 
-    @Test(groups = {"search", "performance", "regression"})
+    @Test(groups = {"search", "performance"})
     @Story("Job Title Search")
     @Description("Test performance search by job title filter")
     @Severity(SeverityLevel.NORMAL)
@@ -70,7 +70,7 @@ public class PerformanceSearchTest {
                        .assertNoRecordsFound();
     }
 
-    @Test(groups = {"search", "performance", "regression"})
+    @Test(groups = {"search", "performance"})
     @Story("Sub Unit Search")
     @Description("Test performance search by sub unit filter")
     @Severity(SeverityLevel.NORMAL)
@@ -80,7 +80,7 @@ public class PerformanceSearchTest {
                        .assertNoRecordsFound();
     }
 
-    @Test(groups = {"search", "performance", "regression"})
+    @Test(groups = {"search", "performance"})
     @Story("Review Status Search")
     @Description("Test performance search by review status filter")
     @Severity(SeverityLevel.NORMAL)

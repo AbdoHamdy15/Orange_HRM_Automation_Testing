@@ -1,184 +1,200 @@
 package pages;
 
-import abstractComponents.AbstractComponent;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import drivers.GUIDriver;
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import utilities.ElementActions;
+import utilities.Validations;
+import utilities.Waits;
+
 import java.util.List;
 
-public class LeavePage extends AbstractComponent {
+public class LeavePage {
+    
+    // Variables
+    private final GUIDriver driver;
+    private final ElementActions elementActions;
+    private final Validations validations;
+    private final Waits waits;
+    
+    // Locators
+    private final By fromDateInput = By.xpath("//label[text()='From Date']/following::input[1]");
+    private final By toDateInput = By.xpath("//label[text()='To Date']/following::input[1]");
+    private final By employeeNameInput = By.xpath("//label[text()='Employee Name']/following::input[1]");
+    private final By dropdownList = By.cssSelector(".oxd-input-group");
+    private final By includePastEmployeesToggle = By.cssSelector("span.oxd-switch-input");
+    private final By searchButton = By.xpath("//button[normalize-space()='Search']");
+    private final By resetButton = By.xpath("//button[normalize-space()='Reset']");
+    private final By leaveHeader = By.xpath("//h6[text()='Leave']");
+    private final By errorMessages = By.xpath("//span[contains(@class,'oxd-input-field-error-message') or contains(@class,'oxd-input-group__message')]");
+    private final By successToast = By.xpath("//div[contains(@class,'oxd-toast') and contains(.,'Success')]");
+    private final By employeeNameError = By.xpath("//label[text()='Employee Name']/following::span[contains(@class,'oxd-input-field-error-message')][1]");
+    private final By statusError = By.xpath("//label[contains(text(),'Show Leave with Status')]/following::span[contains(@class,'oxd-input-field-error-message')][1]");
+    private final By clearButton = By.xpath("//i[contains(@class,'--clear')]");
 
-    WebDriver driver;
-
-    public LeavePage(WebDriver driver) {
-        super(driver);
+    // Constructor
+    public LeavePage(GUIDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        this.elementActions = driver.element();
+        this.validations = driver.validate();
+        this.waits = new Waits(driver.get());
+        waits.waitForElementVisible(leaveHeader);
     }
 
-    // ====== Fields ======
-    @FindBy(xpath = "//label[text()='From Date']/following::input[1]")
-    WebElement fromDateInput;
-
-    @FindBy(xpath = "//label[text()='To Date']/following::input[1]")
-    WebElement toDateInput;
-
-    @FindBy(xpath = "//label[text()='Employee Name']/following::input[1]")
-    WebElement employeeNameInput;
-
-    @FindBy(css = ".oxd-input-group")
-    List<WebElement> dropdownList;
-
-    @FindBy(css = "input[type='checkbox']")
-    WebElement includePastEmployeesToggle;
-
-    @FindBy(xpath = "//button[normalize-space()='Search']")
-    WebElement searchButton;
-
-    @FindBy(xpath = "//button[normalize-space()='Reset']")
-    WebElement resetButton;
-
-    public void enterFromDate(String formattedDate) {
-        selectDateBySendKeys(fromDateInput, formattedDate);
+    // Validations
+    @Step("Assert leave page is displayed")
+    public LeavePage assertLeavePageDisplayed() {
+        validations.validateTrue(elementActions.isDisplayed(leaveHeader), "Leave page should be displayed");
+        return this;
     }
 
-    public void enterToDate(String formattedDate) {
-        selectDateBySendKeys(toDateInput, formattedDate);
-    }
-
-
-    public void enterEmployeeName(String inputText, String nameToSelect) {
-        enterAutoSuggestField(employeeNameInput, inputText, nameToSelect);
-    }
-
-    public void setIncludePastEmployees(boolean include) {
-        boolean isSelected = includePastEmployeesToggle.isSelected();
-        if (include != isSelected) {
-            includePastEmployeesToggle.click();
+    // Actions
+    @Step("Enter from date: {formattedDate}")
+    public LeavePage enterFromDate(String formattedDate) {
+        if (formattedDate != null && !formattedDate.isEmpty()) {
+            elementActions.clearField(fromDateInput);
+            elementActions.type(fromDateInput, formattedDate);
         }
+        return this;
     }
 
-    public void clickSearch() {
-        searchButton.click();
+    @Step("Enter to date: {formattedDate}")
+    public LeavePage enterToDate(String formattedDate) {
+        if (formattedDate != null && !formattedDate.isEmpty()) {
+            elementActions.clearField(toDateInput);
+            elementActions.type(toDateInput, formattedDate);
+        }
+        return this;
     }
 
-    public void clickReset() {
-        resetButton.click();
+    @Step("Enter employee name: {inputText} and select: {nameToSelect}")
+    public LeavePage enterEmployeeName(String inputText, String nameToSelect) {
+        if (inputText != null && !inputText.isEmpty()) {
+            elementActions.clearField(employeeNameInput);
+            elementActions.type(employeeNameInput, inputText);
+            if (nameToSelect != null && !nameToSelect.isEmpty()) {
+                waits.waitForElementVisible(By.xpath("//div[@role='option']/span[text()='" + nameToSelect + "']"));
+                elementActions.click(By.xpath("//div[@role='option']/span[text()='" + nameToSelect + "']"));
+            }
+        }
+        return this;
     }
 
-    public void searchLeave(String fromDate, String toDate, String status, String leaveType, String nameToType,
-                            String nameToSelect, String subUnit, boolean includePastEmployees) {
-
-        enterFromDate(fromDate);
-        enterToDate(toDate);
-
-        // Only select status if a specific value is provided
-        if (status != null && !status.trim().isEmpty()) {
-            selectStatusDropdown(status);
-        }
-
-        if (leaveType != null) {
-            selectLeaveTypeDropdown(leaveType);
-        }
-
-        if (nameToType != null && nameToSelect != null) {
-            enterEmployeeName(nameToType, nameToSelect);
-        }
-
-        if (subUnit != null) {
-            selectSubUnitDropdown(subUnit);
-        }
-
-        setIncludePastEmployees(includePastEmployees);
-        clickSearch();
+    @Step("Set include past employees: {include}")
+    public LeavePage setIncludePastEmployees(boolean include) {
+        elementActions.click(includePastEmployeesToggle);
+        return this;
     }
 
-    // Add this method to get the Info/No Records Found toast message
-    public String waitForToastAndGetMessage() {
-        By toastLocator = By.cssSelector(".oxd-toast-content");
+    @Step("Click search button")
+    public LeavePage clickSearch() {
+        elementActions.click(searchButton);
+        return this;
+    }
+
+    @Step("Click reset button")
+    public LeavePage clickReset() {
+        elementActions.click(resetButton);
+        return this;
+    }
+
+    @Step("Select status dropdown: {typeText}")
+    public LeavePage selectStatusDropdown(String typeText) {
+        elementActions.selectFromDropdownByLabel(dropdownList, "Status", typeText);
+        return this;
+    }
+
+    @Step("Select leave type dropdown: {typeText}")
+    public LeavePage selectLeaveTypeDropdown(String typeText) {
+        elementActions.selectFromDropdownByLabel(dropdownList, "Leave Type", typeText);
+        return this;
+    }
+
+    @Step("Select sub unit dropdown: {typeText}")
+    public LeavePage selectSubUnitDropdown(String typeText) {
+        elementActions.selectFromDropdownByLabel(dropdownList, "Sub Unit", typeText);
+        return this;
+    }
+
+    @Step("Clear status selection")
+    public LeavePage clearStatusSelection() {
         try {
-            org.openqa.selenium.support.ui.WebDriverWait wait = new org.openqa.selenium.support.ui.WebDriverWait(driver,
-                    java.time.Duration.ofSeconds(5));
-            WebElement toastElement = wait
-                    .until(org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated(toastLocator));
-            return toastElement.getText().trim();
+            elementActions.click(clearButton);
         } catch (Exception e) {
-            return null;
+            // If clear button is not present, do nothing
         }
+        return this;
     }
 
+    // Complete workflows
+    @Step("Perform leave search with from date: {fromDate}, to date: {toDate}, status: {status}")
+    public LeavePage searchLeave(String fromDate, String toDate, String status, String leaveType, String nameToType,
+                                String nameToSelect, String subUnit, boolean includePastEmployees) {
+        return enterFromDate(fromDate)
+                .enterToDate(toDate)
+                .selectStatusDropdown(status)
+                .selectLeaveTypeDropdown(leaveType)
+                .enterEmployeeName(nameToType, nameToSelect)
+                .selectSubUnitDropdown(subUnit)
+                .setIncludePastEmployees(includePastEmployees)
+                .clickSearch();
+    }
+
+    // Validation methods
+    @Step("Assert specific error message is displayed: {expectedError}")
+    public LeavePage assertSpecificErrorDisplayed(String expectedError) {
+        String actualError = validations.getActualErrorText(expectedError);
+        validations.isErrorMessageDisplayed(actualError);
+        return this;
+    }
+
+    @Step("Assert success toast is displayed")
+    public LeavePage assertSuccessToastDisplayed() {
+        // Wait for toast message to appear
+        String toastMessage = waits.waitForToastAndGetMessage();
+        validations.validateTrue(toastMessage != null && toastMessage.contains("Success"),
+            "Success toast message should be displayed");
+        return this;
+    }
+
+    @Step("Assert no records found message")
+    public LeavePage assertNoRecordsFound() {
+        String toastMessage = waits.waitForToastAndGetMessage();
+        validations.validateTrue(toastMessage != null && toastMessage.contains("No Records Found"),
+            "No Records Found message should be displayed");
+        return this;
+    }
+
+    @Step("Assert invalid error for employee name is displayed")
+    public LeavePage assertInvalidErrorForEmployeeName() {
+        validations.validateTrue(isInvalidErrorDisplayedForEmployeeName(), "Invalid error for employee name should be displayed");
+        return this;
+    }
+
+    @Step("Assert required error for status is displayed")
+    public LeavePage assertRequiredErrorForStatus() {
+        validations.validateTrue(isRequiredErrorDisplayedForStatus(), "Required error for status should be displayed");
+        return this;
+    }
+
+    @Step("Check if invalid error is displayed for employee name")
     public boolean isInvalidErrorDisplayedForEmployeeName() {
         try {
-            WebElement errorElem = driver.findElement(By.xpath(
-                    "//label[text()='Employee Name']/following::span[contains(@class,'oxd-input-field-error-message')][1]"));
-            return errorElem.isDisplayed() && errorElem.getText().trim().equalsIgnoreCase("Invalid");
+            return elementActions.isDisplayed(employeeNameError) && 
+                   elementActions.getText(employeeNameError).trim().equalsIgnoreCase("Invalid");
         } catch (Exception e) {
             return false;
         }
     }
 
+    @Step("Check if required error is displayed for status")
     public boolean isRequiredErrorDisplayedForStatus() {
         try {
-            WebElement errorElem = driver.findElement(By.xpath(
-                    "//label[contains(text(),'Show Leave with Status')]/following::span[contains(@class,'oxd-input-field-error-message')][1]"));
-            return errorElem.isDisplayed() && errorElem.getText().trim().equalsIgnoreCase("Required");
+            return elementActions.isDisplayed(statusError) && 
+                   elementActions.getText(statusError).trim().equalsIgnoreCase("Required");
         } catch (Exception e) {
             return false;
         }
-    }
-
-    public void clearStatusSelection() {
-        try {
-            // Use the working XPath for the clear button
-            WebElement clearBtn = driver.findElement(By.xpath("//i[contains(@class,'--clear')]"));
-            clearBtn.click();
-            System.out.println("[LeavePage] Successfully cleared status selection");
-        } catch (Exception e) {
-            System.out.println("[LeavePage] Could not clear status selection: " + e.getMessage());
-            // If the clear button is not present, do nothing
-        }
-    }
-
-    public List<WebElement> getDropdownList() {
-        return dropdownList;
-    }
-
-    public void selectStatusDropdown(String typeText) {
-
-        WebElement statusDropDown = dropdownList.stream()
-                .filter(dropdown -> dropdown.findElement(By.cssSelector(".oxd-label")).getText().contains("Status"))
-                .findFirst().orElse(null);
-
-        statusDropDown.click();
-
-        WebElement option = driver.findElement(By.xpath("//div[@role='listbox']//span[text()='" + typeText + "']"));
-        option.click();
-
-    }
-
-    public void selectLeaveTypeDropdown(String typeText) {
-
-        WebElement leaveTypeDropDown = dropdownList.stream()
-                .filter(dropdown -> dropdown.findElement(By.cssSelector(".oxd-label")).getText().contains("Leave Type"))
-                .findFirst().orElse(null);
-
-        leaveTypeDropDown.click();
-
-        WebElement option = driver.findElement(By.xpath("//div[@role='listbox']//span[text()='" + typeText + "']"));
-        option.click();
-
-    }
-
-    public void selectSubUnitDropdown(String typeText) {
-
-        WebElement subUnitDropDown = dropdownList.stream()
-                .filter(dropdown -> dropdown.findElement(By.cssSelector(".oxd-label")).getText().equalsIgnoreCase("Sub Unit"))
-                .findFirst().orElse(null);
-
-        subUnitDropDown.click();
-
-        WebElement option = driver.findElement(By.xpath("//div[@role='listbox']//span[text()='" + typeText + "']"));
-        option.click();
-
     }
 }

@@ -1,4 +1,4 @@
-package tests;
+package tests.features;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -35,7 +35,7 @@ public class RecruitmentSearchTest {
         recruitmentPage = dashboard.goToRecruitment();
     }
 
-    @Test(dataProvider = "recruitmentSearchData", groups = {"search", "recruitment", "regression"})
+    @Test(dataProvider = "recruitmentSearchData", groups = {"search", "recruitment"})
     @Story("Search Recruitment Records")
     @Description("Test recruitment search functionality with various filters")
     @Severity(SeverityLevel.NORMAL)

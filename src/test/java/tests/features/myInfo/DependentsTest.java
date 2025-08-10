@@ -1,4 +1,4 @@
-package tests.myInfo;
+package tests.features.myInfo;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -30,7 +30,7 @@ public class DependentsTest {
         dependentsPage = dashboard.navigateToDependents();
     }
 
-    @Test(groups = {"myinfo", "dependents", "regression"})
+    @Test(groups = {"myinfo", "dependents"})
     @Story("Valid Dependent")
     @Description("Test adding dependent with valid information")
     @Severity(SeverityLevel.NORMAL)
@@ -43,7 +43,7 @@ public class DependentsTest {
                       .assertSuccessToastDisplayed();
     }
 
-    @Test(groups = {"myinfo", "dependents", "regression"})
+    @Test(groups = {"myinfo", "dependents"})
     @Story("Invalid Dependent")
     @Description("Test dependent validation with empty required fields")
     @Severity(SeverityLevel.NORMAL)

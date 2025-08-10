@@ -1,4 +1,4 @@
-package tests;
+package tests.features;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -31,7 +31,7 @@ public class TimeSearchTest {
         timePage = new TimePage(driver);
     }
 
-    @Test(groups = {"search", "time", "regression"})
+    @Test(groups = {"search", "time"})
     @Story("Invalid Employee Name")
     @Description("Test search with invalid employee name and verify error message")
     @Severity(SeverityLevel.NORMAL)
@@ -41,7 +41,7 @@ public class TimeSearchTest {
                 .assertInvalidErrorForEmployeeName();
     }
 
-    @Test(groups = {"search", "time", "regression"})
+    @Test(groups = {"search", "time"})
     @Story("Valid Employee No Timesheets")
     @Description("Test search with valid employee name but no timesheets found")
     @Severity(SeverityLevel.MINOR)
@@ -51,7 +51,7 @@ public class TimeSearchTest {
                 .assertNoTimesheetsFound();
     }
 
-    @Test(groups = {"search", "time", "regression"})
+    @Test(groups = {"search", "time"})
     @Story("Empty Employee Name")
     @Description("Test search with empty employee name and verify required field error")
     @Severity(SeverityLevel.NORMAL)

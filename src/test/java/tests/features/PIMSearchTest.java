@@ -1,4 +1,4 @@
-package tests;
+package tests.features;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -35,7 +35,7 @@ public class PIMSearchTest {
         pimPage = dashboard.goToPIM();
     }
 
-    @Test(dataProvider = "pimSearchData", groups = {"search", "pim", "regression"})
+    @Test(dataProvider = "pimSearchData", groups = {"search", "pim", "smoke"})
     @Story("Search PIM Employees")
     @Description("Test PIM employee search functionality with various filters")
     @Severity(SeverityLevel.NORMAL)

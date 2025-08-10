@@ -1,4 +1,4 @@
-package tests.myInfo;
+package tests.features.myInfo;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;

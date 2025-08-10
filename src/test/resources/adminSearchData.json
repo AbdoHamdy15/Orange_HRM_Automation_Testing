@@ -78,7 +78,7 @@
     "employeeNameInput": "xyz",
     "employeeNameToSelect": "xyz User",
     "status": "Enabled",
-    "expectedResults": "Should show no results found"
+    "expectedResults": "Should show invalid error"
   },
   {
     "description": "Valid: Empty search (all fields empty)",

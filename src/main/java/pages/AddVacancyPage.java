@@ -18,13 +18,14 @@ public class AddVacancyPage {
     private final By vacancyNameInput = By.xpath("//label[text()='Vacancy Name']/following::input[1]");
     private final By jobTitleDropdown = By.xpath("//label[text()='Job Title']/following::div[contains(@class,'oxd-select-wrapper')]");
     private final By descriptionTextarea = By.xpath("//label[text()='Description']/following::textarea[1]");
-    private final By hiringManagerDropdown = By.xpath("//label[text()='Hiring Manager']/following::div[contains(@class,'oxd-select-wrapper')]");
+    private final By hiringManagerDropdown = By.xpath("//input[@placeholder='Type for hints...']");
     private final By numberOfPositionsInput = By.xpath("//label[text()='Number of Positions']/following::input[1]");
     private final By activeToggle = By.xpath("//label[text()='Active']/following::span[contains(@class,'oxd-switch-input')]");
     private final By publishToggle = By.xpath("//label[text()='Publish in RSS Feed and Web Page']/following::span[contains(@class,'oxd-switch-input')]");
     private final By saveButton = By.xpath("//button[normalize-space()='Save']");
     private final By cancelButton = By.xpath("//button[normalize-space()='Cancel']");
     private final By candidatesButton = By.xpath("//a[text()='Candidates']");
+    private final By addButton = By.xpath("//button[normalize-space()='Add']");
     private final By addVacancyHeader = By.xpath("//h6[text()='Add Vacancy']");
     private final By errorMessages = By.xpath("//span[contains(@class,'oxd-input-field-error-message') or contains(@class,'oxd-input-group__message')]");
     private final By successToast = By.xpath("//div[contains(@class,'oxd-toast') and contains(.,'Success')]");
@@ -71,10 +72,10 @@ public class AddVacancyPage {
         return this;
     }
 
-    @Step("Select hiring manager: {hiringManager}")
-    public AddVacancyPage selectHiringManager(String hiringManager) {
-        if (hiringManager != null && !hiringManager.isEmpty()) {
-            elementActions.enterAutoSuggestField(hiringManagerDropdown, hiringManager, hiringManager);
+    @Step("Select hiring manager with input: {inputText} and select: {nameToSelect}")
+    public AddVacancyPage selectHiringManager(String inputText, String nameToSelect) {
+        if (inputText != null && !inputText.isEmpty()) {
+            elementActions.enterAutoSuggestField(hiringManagerDropdown, inputText, nameToSelect);
         }
         return this;
     }
@@ -122,13 +123,19 @@ public class AddVacancyPage {
         return new RecruitmentPage(driver);
     }
 
+    @Step("Click add button")
+    public AddVacancyPage clickAdd() {
+        elementActions.click(addButton);
+        return this;
+    }
+
     // Complete workflow methods
     @Step("Add vacancy with details: {vacancyName}, job title: {jobTitle}")
-    public AddVacancyPage addVacancy(String vacancyName, String jobTitle, String description, String hiringManager, String numberOfPositions) {
+    public AddVacancyPage addVacancy(String vacancyName, String jobTitle, String description, String hiringManagerInput, String hiringManagerSelect, String numberOfPositions) {
         return enterVacancyName(vacancyName)
                 .selectJobTitle(jobTitle)
                 .enterDescription(description)
-                .selectHiringManager(hiringManager)
+                .selectHiringManager(hiringManagerInput, hiringManagerSelect)
                 .enterNumberOfPositions(numberOfPositions);
     }
 

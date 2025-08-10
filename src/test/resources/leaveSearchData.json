@@ -42,7 +42,7 @@
     "status": "",
     "leaveType": "",
     "employeeNameInput": "notfounduser",
-    "employeeNameToSelect": "notfounduser",
+    "employeeNameToSelect": "",
     "subUnit": "",
     "includePastEmployees": false,
     "expectedResult": "No Records Found"
@@ -66,7 +66,7 @@
     "status": "",
     "leaveType": "",
     "employeeNameInput": "invaliduser",
-    "employeeNameToSelect": "invaliduser",
+    "employeeNameToSelect": "",
     "subUnit": "",
     "includePastEmployees": false,
     "expectedErrorField": "Employee Name",

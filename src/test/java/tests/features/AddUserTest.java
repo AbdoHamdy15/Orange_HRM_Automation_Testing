@@ -1,4 +1,4 @@
-package tests;
+package tests.features;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -41,7 +41,7 @@ public class AddUserTest {
         addUserPage = adminPage.clickAdd();
     }
 
-    @Test(dataProvider = "addUserData", groups = {"management", "user", "regression"})
+    @Test(dataProvider = "addUserData", groups = {"management", "user"})
     @Story("Add New User")
     @Description("Test adding user with valid information from data provider")
     @Severity(SeverityLevel.CRITICAL)

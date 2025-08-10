@@ -1,4 +1,4 @@
-package tests.myInfo;
+package tests.features.myInfo;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -30,7 +30,7 @@ public class ImmigrationTest {
         immigrationPage = dashboard.navigateToImmigration();
     }
 
-    @Test(groups = {"myinfo", "immigration", "regression"})
+    @Test(groups = {"myinfo", "immigration"})
     @Story("Valid Immigration Record")
     @Description("Test adding immigration record with valid information")
     @Severity(SeverityLevel.NORMAL)
@@ -44,7 +44,7 @@ public class ImmigrationTest {
                       .assertSuccessToastDisplayed();
     }
 
-    @Test(groups = {"myinfo", "immigration", "regression"})
+    @Test(groups = {"myinfo", "immigration"})
     @Story("Invalid Immigration Record")
     @Description("Test immigration record validation with empty required fields")
     @Severity(SeverityLevel.NORMAL)

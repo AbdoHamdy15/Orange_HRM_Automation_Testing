@@ -25,11 +25,14 @@ public class EmployeeOnboardingTest {
         loginPage = new LoginPage(driver);
     }
 
-    @Test(groups = {"e2e", "onboarding", "regression"})
+    @Test(groups = {"e2e"})
     @Description("E2E Scenario 1: Login → Add Employee → Personal Details → Contact Details → Dependents → Logout")
     @Story("Employee Onboarding - Basic Workflow")
     @Severity(SeverityLevel.CRITICAL)
     public void testEmployeeOnboardingBasicE2E() {
+        // Initialize page objects
+        LoginPage loginPage = new LoginPage(driver);
+        
         // Step 1: Login
         DashboardPage dashboard = loginPage.navigateToLoginPage()
                                          .login("Admin", "admin123");

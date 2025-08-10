@@ -1,4 +1,4 @@
-package tests;
+package tests.features;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -37,7 +37,7 @@ public class LeaveSearchTest {
         leavePage = new LeavePage(driver);
     }
 
-    @Test(dataProvider = "leaveSearchData", groups = {"search", "leave", "regression"})
+    @Test(dataProvider = "leaveSearchData", groups = {"search", "leave"})
     @Story("Search Leave Records")
     @Description("Test leave search functionality with various filters")
     @Severity(SeverityLevel.NORMAL)

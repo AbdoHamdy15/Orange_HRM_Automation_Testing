@@ -1,4 +1,4 @@
-package tests.myInfo;
+package tests.features.myInfo;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -30,7 +30,7 @@ public class ContactDetailsTest {
         contactDetailsPage = dashboard.navigateToContactDetails();
     }
 
-    @Test(groups = {"myinfo", "contact", "smoke", "regression"})
+    @Test(groups = {"myinfo", "contact", "smoke"})
     @Story("Valid Contact Details")
     @Description("Test updating contact details with valid information")
     @Severity(SeverityLevel.CRITICAL)
@@ -50,7 +50,7 @@ public class ContactDetailsTest {
                           .assertSuccessToastDisplayed();
     }
 
-    @Test(groups = {"myinfo", "contact", "regression"})
+    @Test(groups = {"myinfo", "contact"})
     @Story("Invalid Contact Details")
     @Description("Test contact details validation with empty required fields")
     @Severity(SeverityLevel.NORMAL)

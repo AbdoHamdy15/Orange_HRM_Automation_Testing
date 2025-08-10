@@ -15,7 +15,7 @@
   {
     "description": "Invalid candidate name",
     "candidateNameInput": "Invalid Name",
-    "candidateNameToSelect": "Invalid Name",
+    "candidateNameToSelect": "",
     "jobTitle": "",
     "vacancy": "",
     "hiringManager": "",

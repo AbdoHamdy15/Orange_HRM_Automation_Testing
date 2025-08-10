@@ -1,135 +1,165 @@
 package pages;
 
-import abstractComponents.AbstractComponent;
-import org.openqa.selenium.WebDriver;
+import drivers.GUIDriver;
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import pages.myinfo.PersonalDetailsPage;
+import utilities.ElementActions;
+import utilities.Validations;
+import utilities.Waits;
 
-public class DashboardPage extends AbstractComponent {
+public class DashboardPage {
 
-    WebDriver driver;
+    // Variables
+    private final GUIDriver driver;
+    private final ElementActions elementActions;
+    private final Validations validations;
+    private final Waits waits;
 
-    public DashboardPage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
-
-    @FindBy(xpath = "//h6[text()='Dashboard']")
-    WebElement dashboardHeader;
-
-    @FindBy(xpath = "//span[text()='Admin']")
-    WebElement adminMenu;
-
-    @FindBy(xpath = "//span[text()='PIM']")
-    WebElement pimMenu;
-
-    @FindBy(xpath = "//span[text()='Leave']")
-    WebElement leaveMenu;
-
-    @FindBy(xpath = "//span[text()='Time']")
-    WebElement timeMenu;
-
-    @FindBy(xpath = "//span[text()='Recruitment']")
-    WebElement recruitmentMenu;
-
-    @FindBy(xpath = "//span[text()='My Info']")
-    WebElement myInfoMenu;
-
-    @FindBy(xpath = "//span[text()='Performance']")
-    WebElement performanceMenu;
+    // Locators
+    private final By dashboardHeader = By.xpath("//h6[text()='Dashboard']");
+    private final By adminMenu = By.xpath("//a[contains(@href,'admin')]");
+    private final By pimMenu = By.xpath("//a[contains(@href,'pim')]");
+    private final By leaveMenu = By.xpath("//a[contains(@href,'leave')]");
+    private final By timeMenu = By.xpath("//a[contains(@href,'time')]");
+    private final By recruitmentMenu = By.xpath("//a[contains(@href,'recruitment')]");
+    private final By myInfoMenu = By.xpath("//a[@href='/web/index.php/pim/viewMyDetails'] | //span[text()='My Info']/parent::a | //a[contains(@class,'oxd-main-menu-item')]//span[contains(@class,'oxd-main-menu-item--icon--my-info')]/parent::a");
+    private final By performanceMenu = By.xpath("//a[contains(@href,'Performance')]");
 
     // My Info Tabs
-    @FindBy(xpath = "//a[text()='Contact Details']")
-    WebElement contactDetailsTab;
+    private final By contactDetailsTab = By.xpath("//a[text()='Contact Details']");
+    private final By dependentsTab = By.xpath("//a[text()='Dependents']");
+    private final By emergencyContactsTab = By.xpath("//a[text()='Emergency Contacts']");
+    private final By immigrationTab = By.xpath("//a[text()='Immigration']");
+    private final By membershipsTab = By.xpath("//a[text()='Memberships']");
+    private final By qualificationsTab = By.xpath("//a[text()='Qualifications']");
 
-    @FindBy(xpath = "//a[text()='Dependents']")
-    WebElement dependentsTab;
+    // Logout
+    private final By userDropdown = By.xpath("//span[@class='oxd-userdropdown-tab']");
+    private final By logoutOption = By.xpath("//a[text()='Logout']");
 
-    @FindBy(xpath = "//a[text()='Emergency Contacts']")
-    WebElement emergencyContactsTab;
-
-    @FindBy(xpath = "//a[text()='Immigration']")
-    WebElement immigrationTab;
-
-    @FindBy(xpath = "//a[text()='Memberships']")
-    WebElement membershipsTab;
-
-    @FindBy(xpath = "//a[text()='Qualifications']")
-    WebElement qualificationsTab;
-
-    public boolean isAt() {
-        waitForElementToAppear(dashboardHeader);
-        return dashboardHeader.isDisplayed();
+    // Constructor
+    public DashboardPage(GUIDriver driver) {
+        this.driver = driver;
+        this.elementActions = driver.element();
+        this.validations = driver.validate();
+        this.waits = new Waits(driver.get());
     }
 
+    // Validations
+    @Step("Assert dashboard is displayed")
+    public DashboardPage assertDashboardDisplayed() {
+        validations.validateTrue(elementActions.isDisplayed(dashboardHeader), "Dashboard should be displayed");
+        return this;
+    }
+
+    // Navigation methods
+    @Step("Navigate to Admin page")
     public AdminPage goToAdmin() {
-        adminMenu.click();
+        waits.navigateToPage(adminMenu, "Admin");
         return new AdminPage(driver);
     }
 
+    @Step("Navigate to PIM page")
     public PIMPage goToPIM() {
-        pimMenu.click();
+        waits.navigateToPage(pimMenu, "PIM");
         return new PIMPage(driver);
     }
 
-    public void goToLeave() {
-        leaveMenu.click();
+    @Step("Navigate to Leave page")
+    public LeavePage goToLeave() {
+        waits.navigateToPage(leaveMenu, "Leave");
+        return new LeavePage(driver);
     }
 
-    public void goToTime() {
-        timeMenu.click();
+    @Step("Navigate to Time page")
+    public TimePage goToTime() {
+        waits.navigateToPage(timeMenu, "Time");
+        return new TimePage(driver);
     }
 
+    @Step("Navigate to Recruitment page")
     public RecruitmentPage goToRecruitment() {
-        recruitmentMenu.click();
+        waits.navigateToPage(recruitmentMenu, "Recruitment");
         return new RecruitmentPage(driver);
     }
 
-    public PersonalDetailsPage goToMyInfo() {
-        myInfoMenu.click();
-        return new PersonalDetailsPage(driver);
+    @Step("Navigate to My Info page")
+    public pages.myinfo.PersonalDetailsPage goToMyInfo() {
+        waits.navigateToPage(myInfoMenu, "Personal Details");
+        return new pages.myinfo.PersonalDetailsPage(driver);
     }
-    
+
+    @Step("Navigate to Contact Details")
     public pages.myinfo.ContactDetailsPage navigateToContactDetails() {
-        myInfoMenu.click();
-        contactDetailsTab.click();
+        waits.waitForElementClickable(myInfoMenu);
+        elementActions.click(myInfoMenu);
+        waits.waitForElementClickable(contactDetailsTab);
+        elementActions.click(contactDetailsTab);
         return new pages.myinfo.ContactDetailsPage(driver);
     }
-    
+
+    @Step("Navigate to Dependents")
     public pages.myinfo.DependentsPage navigateToDependents() {
-        myInfoMenu.click();
-        dependentsTab.click();
+        waits.waitForElementClickable(myInfoMenu);
+        elementActions.click(myInfoMenu);
+        waits.waitForElementClickable(dependentsTab);
+        elementActions.click(dependentsTab);
         return new pages.myinfo.DependentsPage(driver);
     }
-    
+
+    @Step("Navigate to Emergency Contacts")
     public pages.myinfo.EmergencyContactsPage navigateToEmergencyContacts() {
-        myInfoMenu.click();
-        emergencyContactsTab.click();
+        waits.waitForElementClickable(myInfoMenu);
+        elementActions.click(myInfoMenu);
+        waits.waitForElementClickable(emergencyContactsTab);
+        elementActions.click(emergencyContactsTab);
         return new pages.myinfo.EmergencyContactsPage(driver);
     }
-    
+
+    @Step("Navigate to Immigration")
     public pages.myinfo.ImmigrationPage navigateToImmigration() {
-        myInfoMenu.click();
-        immigrationTab.click();
+        waits.waitForElementClickable(myInfoMenu);
+        elementActions.click(myInfoMenu);
+        waits.waitForElementClickable(immigrationTab);
+        elementActions.click(immigrationTab);
         return new pages.myinfo.ImmigrationPage(driver);
     }
-    
+
+    @Step("Navigate to Memberships")
     public pages.myinfo.MembershipsPage navigateToMemberships() {
-        myInfoMenu.click();
-        membershipsTab.click();
+        waits.waitForElementClickable(myInfoMenu);
+        elementActions.click(myInfoMenu);
+        waits.waitForElementClickable(membershipsTab);
+        elementActions.click(membershipsTab);
         return new pages.myinfo.MembershipsPage(driver);
     }
-    
+
+    @Step("Navigate to Qualifications")
     public pages.myinfo.QualificationsPage navigateToQualifications() {
-        myInfoMenu.click();
-        qualificationsTab.click();
+        waits.waitForElementClickable(myInfoMenu);
+        elementActions.click(myInfoMenu);
+        waits.waitForElementClickable(qualificationsTab);
+        elementActions.click(qualificationsTab);
         return new pages.myinfo.QualificationsPage(driver);
     }
 
-    public void goToPerformance() {
-        performanceMenu.click();
+    @Step("Navigate to Performance page")
+    public PerformancePage goToPerformance() {
+        waits.navigateToPage(performanceMenu, "Performance");
+        return new PerformancePage(driver);
+    }
+
+    @Step("Logout from the application")
+    public LoginPage logout() {
+        elementActions.click(userDropdown);
+        elementActions.click(logoutOption);
+        return new LoginPage(driver);
+    }
+
+    // Legacy method for backward compatibility
+    public boolean isAt() {
+        return elementActions.isDisplayed(dashboardHeader);
     }
 }

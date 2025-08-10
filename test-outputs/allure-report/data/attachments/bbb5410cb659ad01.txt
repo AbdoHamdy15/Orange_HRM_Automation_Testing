@@ -1,0 +1,26 @@
+[DEBUG] - [10-08-2025 00:05:54] [main] [org.testng.TestNG] - suiteXmlPath: "C:\Users\hp\AppData\Local\JetBrains\IntelliJIdea2024.1\temp-testng-customsuite.xml"
+[INFO] - [10-08-2025 00:05:55] [main] [listeners.TestNGListeners] - Test Execution started
+[INFO] - [10-08-2025 00:05:55] [main] [utilities.PropertiesUtils] - Loading Properties File Data
+[INFO] - [10-08-2025 00:05:55] [main] [utilities.FilesUtils] - Deleting directory: test-outputs\allure-results
+[INFO] - [10-08-2025 00:05:55] [main] [utilities.FilesUtils] - Directory deleted successfully: test-outputs\allure-results
+[INFO] - [10-08-2025 00:05:55] [main] [utilities.FilesUtils] - Directory created: test-outputs\allure-results
+[INFO] - [10-08-2025 00:05:55] [main] [utilities.FilesUtils] - Directory already exists: test-outputs\Logs
+[INFO] - [10-08-2025 00:05:55] [main] [utilities.FilesUtils] - Directory created: test-outputs\screenshots
+[INFO] - [10-08-2025 00:05:55] [main] [org.testng.internal.Utils] - [TestNG] Running:
+  C:\Users\hp\AppData\Local\JetBrains\IntelliJIdea2024.1\temp-testng-customsuite.xml
+
+[INFO] - [10-08-2025 00:06:00] [main] [utilities.BrowserActions] - Navigated to URL:  https://opensource-demo.orangehrmlive.com/
+[INFO] - [10-08-2025 00:06:00] [main] [utilities.Waits] - Waiting for element to be visible: By.cssSelector: div.orangehrm-login-form
+[INFO] - [10-08-2025 00:06:00] [main] [utilities.Waits] - Waiting for element to be present: By.cssSelector: div.orangehrm-login-form
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.BrowserActions] - Current URL:  https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.ElementActions] - Cleared field :  By.name: username
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.ElementActions] - Data entered:  Admi1n  in the field:  By.name: username
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.ElementActions] - Cleared field :  By.name: password
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.ElementActions] - Data entered:  admin123  in the field:  By.name: password
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.ElementActions] - Finding element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [10-08-2025 00:06:01] [main] [utilities.ElementActions] - Clicked on the element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [10-08-2025 00:06:02] [main] [utilities.BrowserActions] - Current URL:  https://opensource-demo.orangehrmlive.com/web/index.php/auth/login

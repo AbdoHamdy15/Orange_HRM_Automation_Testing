@@ -1,0 +1,48 @@
+[DEBUG] - [10-08-2025 02:04:42] [main] [org.testng.TestNG] - suiteXmlPath: "C:\Users\hp\AppData\Local\JetBrains\IntelliJIdea2024.1\temp-testng-customsuite.xml"
+[INFO] - [10-08-2025 02:04:44] [main] [listeners.TestNGListeners] - Test Execution started
+[INFO] - [10-08-2025 02:04:44] [main] [utilities.PropertiesUtils] - Loading Properties File Data
+[INFO] - [10-08-2025 02:04:44] [main] [utilities.FilesUtils] - Directory copied successfully from test-outputs\allure-results\history to temp-history
+[INFO] - [10-08-2025 02:04:45] [main] [utilities.FilesUtils] - Directory copied successfully from temp-history to test-outputs\allure-results\history
+[INFO] - [10-08-2025 02:04:45] [main] [utilities.FilesUtils] - Directory deleted successfully: temp-history
+[INFO] - [10-08-2025 02:04:45] [main] [utilities.FilesUtils] - Directory already exists: test-outputs\allure-results
+[INFO] - [10-08-2025 02:04:45] [main] [utilities.FilesUtils] - Directory already exists: test-outputs\Logs
+[INFO] - [10-08-2025 02:04:45] [main] [utilities.FilesUtils] - Directory created: test-outputs\screenshots
+[INFO] - [10-08-2025 02:04:45] [main] [org.testng.internal.Utils] - [TestNG] Running:
+  C:\Users\hp\AppData\Local\JetBrains\IntelliJIdea2024.1\temp-testng-customsuite.xml
+
+[INFO] - [10-08-2025 02:04:53] [main] [utilities.BrowserActions] - Navigated to URL:  https://opensource-demo.orangehrmlive.com/
+[INFO] - [10-08-2025 02:04:53] [main] [utilities.Waits] - Waiting for element to be visible: By.cssSelector: div.orangehrm-login-form
+[INFO] - [10-08-2025 02:04:53] [main] [utilities.Waits] - Waiting for element to be present: By.cssSelector: div.orangehrm-login-form
+[INFO] - [10-08-2025 02:04:54] [main] [utilities.BrowserActions] - Current URL:  https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+[INFO] - [10-08-2025 02:04:54] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [10-08-2025 02:04:54] [main] [utilities.ElementActions] - Cleared field :  By.name: username
+[INFO] - [10-08-2025 02:04:54] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [10-08-2025 02:04:54] [main] [utilities.ElementActions] - Data entered:  Admin1  in the field:  By.name: username
+[INFO] - [10-08-2025 02:04:54] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [10-08-2025 02:04:55] [main] [utilities.ElementActions] - Cleared field :  By.name: password
+[INFO] - [10-08-2025 02:04:55] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [10-08-2025 02:04:55] [main] [utilities.ElementActions] - Data entered:  admin123  in the field:  By.name: password
+[INFO] - [10-08-2025 02:04:55] [main] [utilities.ElementActions] - Finding element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [10-08-2025 02:04:55] [main] [utilities.ElementActions] - Clicked on the element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [10-08-2025 02:04:55] [main] [utilities.BrowserActions] - Current URL:  https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+[INFO] - [10-08-2025 02:04:55] [main] [utilities.AllureUtils] - Logs attached to Allure report
+[INFO] - [10-08-2025 02:04:56] [main] [utilities.ScreenshotsUtils] - Screenshot taken: test-outputs\screenshots\failed-validLogin.png
+[INFO] - [10-08-2025 02:04:56] [main] [utilities.AllureUtils] - Screenshot attached to Allure report: test-outputs/screenshots/failed-validLogin.png
+[INFO] - [10-08-2025 02:04:56] [main] [listeners.TestNGListeners] - Test case validLogin failed
+[INFO] - [10-08-2025 02:04:57] [main] [utilities.ScreenshotsUtils] - Screenshot taken: test-outputs\screenshots\failed-validLogin.png
+[INFO] - [10-08-2025 02:04:57] [main] [utilities.JiraManager] - Logs added to Jira description: log_2025-08-10_02-04-41.log
+[INFO] - [10-08-2025 02:04:58] [main] [utilities.JiraReporter] - JiraReporter initialized successfully for: https://abdelrahmanhamdy1516.atlassian.net
+[INFO] - [10-08-2025 02:04:58] [main] [utilities.JiraManager] - JiraManager initialized successfully
+[INFO] - [10-08-2025 02:05:00] [main] [utilities.JiraReporter] - Created JIRA issue: IGP-34
+[INFO] - [10-08-2025 02:05:01] [main] [utilities.JiraReporter] - Attached file: failed-validLogin.png to issue: IGP-34
+[INFO] - [10-08-2025 02:05:01] [main] [drivers.GUIDriver] - Closing browser...
+[INFO] - [10-08-2025 02:05:02] [main] [listeners.TestNGListeners] - Test Execution finished
+[INFO] - [10-08-2025 02:05:02] [main] [utilities.JiraReporter] - JiraReporter closed successfully
+[INFO] - [10-08-2025 02:05:02] [main] [utilities.JiraManager] - JiraReporter closed successfully
+[INFO] - [10-08-2025 02:05:02] [main] [utilities.FilesUtils] - Directory copied successfully from test-outputs\allure-report\history to test-outputs\allure-results\history
+[INFO] - [10-08-2025 02:05:02] [main] [utilities.AllureUtils] - Allure history copied successfully
+[INFO] - [10-08-2025 02:05:02] [main] [utilities.AllureUtils] - environment.properties created successfully
+[ERROR] - [10-08-2025 02:05:02] [main] [utilities.TerminalUtils] - Failed to execute command: Cannot run program "C:\Users\hp\.m2\repository\allure\allure-2.33.0\bin\allure.bat": CreateProcess error=2, The system cannot find the file specified
+[INFO] - [10-08-2025 02:05:02] [main] [utilities.AllureUtils] - Allure report generated successfully on Windows
+[WARN] - [10-08-2025 02:05:02] [main] [utilities.AllureUtils] - Allure report file does not exist: test-outputs\allure-report\index.html
+[INFO] - [10-08-2025 02:05:02] [main] [listeners.TestNGListeners] - Allure report generated: null

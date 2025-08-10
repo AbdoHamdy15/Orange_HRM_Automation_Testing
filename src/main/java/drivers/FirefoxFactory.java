@@ -1,6 +1,5 @@
-package com.swaglabs.drivers;
+package drivers;
 
-import com.swaglabs.utils.PropertiesUtils;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,14 +9,12 @@ public class FirefoxFactory extends AbstractDriver implements WebDriverOptionsAb
     @Override
     public FirefoxOptions getOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.addArguments("--start-maximized");
+        // Firefox-specific arguments
+        firefoxOptions.addArguments("--width=1920");
+        firefoxOptions.addArguments("--height=1080");
         firefoxOptions.addArguments("--disable-extensions");
-        firefoxOptions.addArguments("--disable-infobars");
         firefoxOptions.addArguments("--disable-notifications");
-        firefoxOptions.addArguments("--remote-allow-origins=*");
-        if (!PropertiesUtils.getPropertyValue("executionType").equalsIgnoreCase("local")) {
-            firefoxOptions.addArguments("--headless");
-        }
+        //firefoxOptions.addArguments("--headless"); // Uncomment if you want to run in headless mode
         firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         firefoxOptions.setAcceptInsecureCerts(true);
         return firefoxOptions;

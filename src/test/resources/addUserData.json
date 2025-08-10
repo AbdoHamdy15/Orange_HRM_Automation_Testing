@@ -15,7 +15,7 @@
     "employeeNameInput": "am",
     "employeeNameToSelect": "Amelia Brown",
     "status": "Disabled",
-    "username": "essuser01a",
+    "username": "user01a",
     "password": "EssPass_123",
     "confirmPassword": "EssPass_123"
   },
@@ -91,7 +91,7 @@
     "employeeNameInput": "am",
     "employeeNameToSelect": "Amelia Brown",
     "status": "Enabled",
-    "username": "useradmin01b",
+    "username": "Admin",
     "password": "Password_123",
     "confirmPassword": "Password_123",
     "expectedError": "UsernameExists"

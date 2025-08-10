@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Sun Aug 10 00:05:57 EEST 2025","Sun Aug 10 00:06:02 EEST 2025","4505","Default Suite","OrangeHRM-Automation","tests.features.LoginTest","tests.features.LoginTest","validLogin","validLogin","Test successful login with valid credentials"

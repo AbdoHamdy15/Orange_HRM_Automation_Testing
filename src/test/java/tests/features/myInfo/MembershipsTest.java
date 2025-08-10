@@ -1,4 +1,4 @@
-package tests.myInfo;
+package tests.features.myInfo;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -30,7 +30,7 @@ public class MembershipsTest {
         membershipsPage = dashboard.navigateToMemberships();
     }
 
-    @Test(groups = {"myinfo", "memberships", "regression"})
+    @Test(groups = {"myinfo", "memberships"})
     @Story("Valid Membership")
     @Description("Test adding membership with valid information")
     @Severity(SeverityLevel.NORMAL)
@@ -46,7 +46,7 @@ public class MembershipsTest {
                       .assertSuccessToastDisplayed();
     }
 
-    @Test(groups = {"myinfo", "memberships", "regression"})
+    @Test(groups = {"myinfo", "memberships"})
     @Story("Invalid Membership")
     @Description("Test membership validation with empty required fields")
     @Severity(SeverityLevel.NORMAL)

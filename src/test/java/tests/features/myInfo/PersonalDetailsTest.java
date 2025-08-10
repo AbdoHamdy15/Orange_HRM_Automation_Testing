@@ -1,4 +1,4 @@
-package tests.myInfo;
+package tests.features.myInfo;
 
 import drivers.GUIDriver;
 import io.qameta.allure.*;
@@ -32,7 +32,7 @@ public class PersonalDetailsTest {
         personalDetailsPage = new PersonalDetailsPage(driver);
     }
 
-    @Test(groups = {"myinfo", "personal", "smoke", "regression"})
+    @Test(groups = {"myinfo", "personal", "smoke"})
     @Story("Valid Personal Details")
     @Description("Test updating personal details with valid information")
     @Severity(SeverityLevel.CRITICAL)
@@ -59,7 +59,7 @@ public class PersonalDetailsTest {
                           .assertSuccessToastDisplayed();
     }
 
-    @Test(groups = {"myinfo", "personal", "regression"})
+    @Test(groups = {"myinfo", "personal"})
     @Story("Invalid Personal Details")
     @Description("Test personal details validation with empty required fields")
     @Severity(SeverityLevel.NORMAL)

@@ -39,18 +39,19 @@ public class LeaveManagementE2ETest {
         LeavePage leavePage = dashboard.goToLeave()
                                       .assertLeavePageDisplayed();
 
-        // Step 3: Search for leave records with data from JSON (Scenario 1: Default load, no data)
-        leavePage.searchLeave("2025-01-01", "2025-12-31", "", "US - Personal",
-                             "", "", "", false)
-                .assertNoRecordsFound();
+        // Step 3: Search for leave records with specific criteria
+        leavePage.searchLeave("2024-01-01", "2024-12-31", "Scheduled", "US - Personal", 
+                             "John", "John Doe", "Engineering", true)
+                 .assertSuccessToastDisplayed();
+
         // Step 4: Reset the search form
         leavePage.clickReset()
                  .assertLeavePageDisplayed();
 
-        // Step 5: Perform another search with different criteria (Scenario 2: Change status to Rejected)
-        leavePage.searchLeave("2025-01-01", "2025-12-31", "Rejected", "", 
-                             "", "", "", false)
-                .assertNoRecordsFound();
+        // Step 5: Perform another search with different criteria
+        leavePage.searchLeave("2024-06-01", "2024-06-30", "Taken", "US - Sick", 
+                             "Sarah", "Sarah Wilson", "Sales", false)
+                 .assertSuccessToastDisplayed();
 
         // Step 6: Logout
         dashboard.logout()
@@ -73,20 +74,21 @@ public class LeaveManagementE2ETest {
         LeavePage leavePage = dashboard.goToLeave()
                                       .assertLeavePageDisplayed();
 
-        // Step 3: Search with invalid employee name (from JSON data)
-        leavePage.enterEmployeeName("invaliduser", "")
+        // Step 3: Search with invalid employee name
+        leavePage.enterEmployeeName("InvalidEmployee", null)
                  .clickSearch()
                  .assertInvalidErrorForEmployeeName();
 
-        // Step 4: Clear and search with invalid status (from JSON data)
+        // Step 4: Clear and search with invalid status
         leavePage.clearStatusSelection()
                  .clickSearch()
                  .assertRequiredErrorForStatus();
 
-        // Step 5: Perform valid search after errors (Scenario 3: Change leave type only)
-        leavePage.searchLeave("2025-01-01", "2025-12-31", "", "US - Personal", 
-                             "", "", "", false)
-                .assertNoRecordsFound();
+        // Step 5: Perform valid search after errors
+        leavePage.searchLeave("2024-01-01", "2024-12-31", "Scheduled", "US - Personal", 
+                             "John", "John Doe", "Engineering", true)
+                 .assertSuccessToastDisplayed();
+
         // Step 6: Logout
         dashboard.logout()
                 .assertLoginPageDisplayed();
