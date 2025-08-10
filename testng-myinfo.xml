@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MyInfo Test Suite">
+    <listeners>
+        <listener class-name="listeners.TestNGListeners"/>
+        <listener class-name="listeners.RetryListener"/>
+    </listeners>
+    <test name="MyInfo Tests">
+        <parameter name="browser" value="edge"/>
+        <groups>
+            <run>
+                <include name="myinfo"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.features.myInfo.PersonalDetailsTest"/>
+            <class name="tests.features.myInfo.ContactDetailsTest"/>
+            <class name="tests.features.myInfo.EmergencyContactsTest"/>
+            <class name="tests.features.myInfo.DependentsTest"/>
+            <class name="tests.features.myInfo.ImmigrationTest"/>
+            <class name="tests.features.myInfo.QualificationsTest"/>
+            <class name="tests.features.myInfo.MembershipsTest"/>
+        </classes>
+    </test>
+</suite> 

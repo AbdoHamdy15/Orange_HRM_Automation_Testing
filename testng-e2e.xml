@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="E2E Test Suite" parallel="classes" thread-count="2">
+    <listeners>
+        <listener class-name="listeners.TestNGListeners"/>
+    </listeners>
+    
+    <!-- E2E Test Cases -->
+    <test name="E2E Test Cases">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.e2e.EmployeeOnboardingTest"/>
+            <class name="tests.e2e.RecruitmentE2ETest"/>
+            <class name="tests.e2e.LeaveManagementE2ETest"/>
+            <class name="tests.e2e.PerformanceManagementE2ETest"/>
+            <class name="tests.e2e.TimeManagementE2ETest"/>
+            <class name="tests.e2e.UserManagementE2ETest"/>
+            <class name="tests.e2e.EmployeeInformationE2ETest"/>
+            <class name="tests.e2e.CompleteHRWorkflowE2ETest"/>
+        </classes>
+    </test>
+    
+</suite>

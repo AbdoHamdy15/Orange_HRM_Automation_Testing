@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Pages Test Suite" parallel="classes" thread-count="4">
+    <listeners>
+        <listener class-name="listeners.TestNGListeners"/>
+        <listener class-name="listeners.RetryListener"/>
+    </listeners>
+    
+    <!-- Authentication Tests -->
+    <test name="Authentication Tests">
+        <parameter name="browser" value="edge"/>
+        <groups>
+            <run>
+                <include name="auth"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.features.LoginTest"/>
+        </classes>
+    </test>
+    
+    <!-- Management Tests -->
+    <test name="Management Tests">
+        <parameter name="browser" value="edge"/>
+        <groups>
+            <run>
+                <include name="management"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.features.AddEmployeeTest"/>
+            <class name="tests.features.AddUserTest"/>
+            <class name="tests.features.AddCandidateTest"/>
+        </classes>
+    </test>
+    
+    <!-- Search Tests -->
+    <test name="Search Tests">
+        <parameter name="browser" value="edge"/>
+        <groups>
+            <run>
+                <include name="search"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.features.AdminSearchTest"/>
+            <class name="tests.features.PIMSearchTest"/>
+            <class name="tests.features.LeaveSearchTest"/>
+            <class name="tests.features.RecruitmentSearchTest"/>
+            <class name="tests.features.PerformanceSearchTest"/>
+            <class name="tests.features.TimeSearchTest"/>
+        </classes>
+    </test>
+    
+</suite> 
