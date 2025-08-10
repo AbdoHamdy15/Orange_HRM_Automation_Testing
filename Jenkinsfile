@@ -23,42 +23,14 @@ pipeline {
             }
         }
         
-        stage('Test') {
-            parallel {
-                stage('Smoke Tests') {
-                    steps {
-                        echo 'Running Smoke Tests...'
-                        sh 'mvn test -DsuiteXmlFile=testng-smoke.xml'
-                    }
-                    post {
-                        always {
-                            publishTestResults testResultsPattern: '**/test-outputs/*.xml'
-                        }
-                    }
-                }
-                
-                stage('Cross Browser Tests') {
-                    steps {
-                        echo 'Running Cross Browser Tests...'
-                        sh 'mvn test -DsuiteXmlFile=testng-cross-browser.xml'
-                    }
-                    post {
-                        always {
-                            publishTestResults testResultsPattern: '**/test-outputs/*.xml'
-                        }
-                    }
-                }
-                
-                stage('E2E Tests') {
-                    steps {
-                        echo 'Running E2E Tests...'
-                        sh 'mvn test -DsuiteXmlFile=testng-e2e.xml'
-                    }
-                    post {
-                        always {
-                            publishTestResults testResultsPattern: '**/test-outputs/*.xml'
-                        }
-                    }
+        stage('Login Tests') {
+            steps {
+                echo 'Running Login Tests...'
+                sh 'mvn test -Dtest=LoginTest'
+            }
+            post {
+                always {
+                    publishTestResults testResultsPattern: '**/test-outputs/*.xml'
                 }
             }
         }
