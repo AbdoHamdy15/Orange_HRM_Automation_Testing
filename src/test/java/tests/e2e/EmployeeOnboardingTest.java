@@ -44,14 +44,14 @@ public class EmployeeOnboardingTest {
         // Step 3: Fill Employee Basic Details, Save and Wait
         PersonalDetailsPage personalDetailsPage = addEmployeePage.enterFirstName("John")
                       .enterLastName("Doe")
-                      .enterEmployeeId("EPM0074")
+                      .enterEmployeeId("EPM0014")
                       .clickSave();
 
         // Step 4: Complete Personal Details
         personalDetailsPage.enterFirstName("John")
                           .enterMiddleName("Michael")
                           .enterLastName("Doe")
-                          .enterOtherId("74")
+                          .enterOtherId("14")
                           .selectNationality("American")
                           .selectMaritalStatus("Single")
                           .clickSaveAfterGender()

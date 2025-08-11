@@ -64,14 +64,14 @@ public class CompleteHRWorkflowE2ETest {
                                                   .clickAddEmployee();
         PersonalDetailsPage personalDetailsPage = addEmployeePage.enterFirstName("Michael")
                       .enterLastName("Johnson")
-                      .enterEmployeeId("EMP083")
+                      .enterEmployeeId("EMP018")
                       .clickSave();
 
         // Step 5: Complete Personal Details
         personalDetailsPage.enterFirstName("Michael")
                           .enterMiddleName("Robert")
                           .enterLastName("Johnson")
-                          .enterOtherId("EMP83")
+                          .enterOtherId("EMP18")
                           .clickSaveAfterGender()
                           .assertSuccessToastDisplayed();
 
@@ -79,7 +79,7 @@ public class CompleteHRWorkflowE2ETest {
         AdminPage adminPage = dashboard.goToAdmin()
                                       .assertAdminPageDisplayed();
         AddUserPage addUserPage = adminPage.clickAdd();
-        addUserPage.addNewUser("ESS", "james", "James  Butler", "Enabled", "james.butler4", "Password123")
+        addUserPage.addNewUser("ESS", "james", "James  Butler", "Enabled", "james.butler86", "Password123")
                    .clickSave()
                    .assertSuccessToastDisplayed();
 
@@ -111,7 +111,7 @@ public class CompleteHRWorkflowE2ETest {
                                                   .clickAddEmployee();
         PersonalDetailsPage personalDetailsPage = addEmployeePage.enterFirstName("Emily")
                       .enterLastName("Davis")
-                      .enterEmployeeId("EMP089")
+                      .enterEmployeeId("EMP019")
                       .clickSave();
 
         // Step 4: Complete employee details
@@ -128,7 +128,7 @@ public class CompleteHRWorkflowE2ETest {
         adminPage = dashboard.goToAdmin()
                             .assertAdminPageDisplayed();
         AddUserPage addUserPage = adminPage.clickAdd();
-        addUserPage.addNewUser("ESS", "Emily", "Emily Grace Davis", "Enabled", "emily.davis8", "Password123")
+        addUserPage.addNewUser("ESS", "Emily", "Emily Grace Davis", "Enabled", "emily.davis2", "Password123")
                    .clickSave()
                    .assertSuccessToastDisplayed();
 
