@@ -53,7 +53,7 @@ public class RecruitmentE2ETest {
 
         // Step 5: Add candidate with complete details
         addCandidatePage.addCandidateComplete("Abdelrahman", "Hamdy", "Ibrahim", "abdelrahman.hamdy12799@gmail.com",
-                                           "+201033223147", "Software Engineer",
+                                           "+201033223147", "Lead Automation Tester",
                                            "E:\\Newest desktop\\ITI Material\\Abdelrahman_Hamdy_Software_Tester.pdf", "Selenium, Java, TestNG",
                                            "Experienced QA engineer with strong automation skills", true)
                        .clickSave()

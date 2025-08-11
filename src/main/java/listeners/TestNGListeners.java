@@ -1,13 +1,24 @@
 package listeners;
 
 import drivers.GUIDriver;
-import org.testng.*;
-import utilities.*;
-
-import java.util.Map;
-
+import org.openqa.selenium.WebDriver;
+import org.testng.IExecutionListener;
+import org.testng.IInvokedMethod;
+import org.testng.IInvokedMethodListener;
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+import utilities.AllureUtils;
+import utilities.CustomSoftAssertions;
+import utilities.FilesUtils;
+import utilities.JiraManager;
+import utilities.LogsUtil;
+import utilities.PropertiesUtils;
+import utilities.ScreenshotsUtils;
 
 import java.io.File;
+import java.util.Map;
+
 
 import static utilities.PropertiesUtils.loadProperties;
 
@@ -84,6 +95,25 @@ public class TestNGListeners implements IExecutionListener, ITestListener, IInvo
                 String screenshotPath = "test-outputs/screenshots/failed-" + testResult.getName() + ".png";
                 AllureUtils.attachScreenshotToAllure("Screenshot", screenshotPath);
             }
+            
+            // Clean up WebDriver after each test method
+            cleanupWebDriver();
+        }
+    }
+
+    /**
+     * Clean up WebDriver instance for current thread
+     */
+    private void cleanupWebDriver() {
+        try {
+            WebDriver driver = GUIDriver.getInstance();
+            if (driver != null) {
+                LogsUtil.info("Cleaning up WebDriver for thread: " + Thread.currentThread().getName());
+                driver.quit();
+                LogsUtil.info("WebDriver cleaned up successfully for thread: " + Thread.currentThread().getName());
+            }
+        } catch (Exception e) {
+            LogsUtil.error("Error cleaning up WebDriver: " + e.getMessage());
         }
     }
 
@@ -91,6 +121,8 @@ public class TestNGListeners implements IExecutionListener, ITestListener, IInvo
     @Override
     public void onTestSuccess(ITestResult result) {
         LogsUtil.info("Test case", result.getName(), "passed");
+        // Clean up WebDriver after successful test
+        cleanupWebDriver();
     }
 
     @Override
@@ -102,11 +134,16 @@ public class TestNGListeners implements IExecutionListener, ITestListener, IInvo
         
         // Report to Jira using new JiraManager
         JiraManager.reportFailure(result);
+        
+        // Clean up WebDriver after failed test
+        cleanupWebDriver();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         LogsUtil.info("Test case", result.getName(), "skipped");
+        // Clean up WebDriver after skipped test
+        cleanupWebDriver();
     }
 
 }
