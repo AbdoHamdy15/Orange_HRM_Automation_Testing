@@ -49,7 +49,7 @@ public class LeaveManagementE2ETest {
                  .assertLeavePageDisplayed();
 
         // Step 5: Perform another search with different criteria
-        leavePage.searchLeave("2024-06-01", "2024-06-30", "Taken", "US - Sick", 
+        leavePage.searchLeave("2024-06-01", "2024-06-30", "Taken", "US - FMLA",
                              "R", "Ranga  Akunuri", "Sales", false)
                 .assertNoRecordsFound();
 
@@ -86,7 +86,7 @@ public class LeaveManagementE2ETest {
 
         // Step 5: Perform valid search after errors
         leavePage.searchLeave("2024-01-01", "2024-12-31", "Scheduled", "US - Personal", 
-                             "R", "Ranga  Akunuri", "Engineering", true)
+                             "A", "Amelia  Brown", "Engineering", true)
                  .assertSuccessToastDisplayed();
 
         // Step 6: Logout

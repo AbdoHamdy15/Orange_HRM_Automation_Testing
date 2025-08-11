@@ -45,7 +45,7 @@ public class CompleteHRWorkflowE2ETest {
         RecruitmentPage recruitmentPage = dashboard.goToRecruitment()
                                                    .clickVacanciesTab();
         AddVacancyPage addVacancyPage = recruitmentPage.clickAddVacancy();
-        addVacancyPage.addVacancy("Software Testing Engineer", "QA Engineer",
+        addVacancyPage.addVacancy("QA Tester", "QA Engineer",
                         "Junior software tester (0 - 6 months experience)", "a", "Ranga Akunuri", "1")
                 .clickSave();
 
@@ -53,7 +53,7 @@ public class CompleteHRWorkflowE2ETest {
         recruitmentPage = addVacancyPage.clickCandidates();
         AddCandidatePage addCandidatePage = recruitmentPage.clickAdd();
         addCandidatePage.addCandidateComplete("Abdelrahman", "Hamdy", "Ibrahim", "abdelrahman.hamdy12799@gmail.com",
-                        "+201033223147", "Lead Automation Tester",
+                        "+201033223147", "Software Engineer",
                         "E:\\Newest desktop\\ITI Material\\Abdelrahman_Hamdy_Software_Tester.pdf", "Selenium, Java, TestNG",
                         "Experienced QA engineer with strong automation skills", true)
                 .clickSave()
@@ -64,14 +64,14 @@ public class CompleteHRWorkflowE2ETest {
                                                   .clickAddEmployee();
         PersonalDetailsPage personalDetailsPage = addEmployeePage.enterFirstName("Michael")
                       .enterLastName("Johnson")
-                      .enterEmployeeId("EMP043")
+                      .enterEmployeeId("EMP083")
                       .clickSave();
 
         // Step 5: Complete Personal Details
         personalDetailsPage.enterFirstName("Michael")
                           .enterMiddleName("Robert")
                           .enterLastName("Johnson")
-                          .enterOtherId("EMP43")
+                          .enterOtherId("EMP83")
                           .clickSaveAfterGender()
                           .assertSuccessToastDisplayed();
 
@@ -79,7 +79,7 @@ public class CompleteHRWorkflowE2ETest {
         AdminPage adminPage = dashboard.goToAdmin()
                                       .assertAdminPageDisplayed();
         AddUserPage addUserPage = adminPage.clickAdd();
-        addUserPage.addNewUser("ESS", "j", "James  Butler", "Enabled", "james.butler5", "Password123")
+        addUserPage.addNewUser("ESS", "j", "James  Butler", "Enabled", "james.butler4", "Password123")
                    .clickSave()
                    .assertSuccessToastDisplayed();
 
@@ -111,14 +111,14 @@ public class CompleteHRWorkflowE2ETest {
                                                   .clickAddEmployee();
         PersonalDetailsPage personalDetailsPage = addEmployeePage.enterFirstName("Emily")
                       .enterLastName("Davis")
-                      .enterEmployeeId("EMP049")
+                      .enterEmployeeId("EMP089")
                       .clickSave();
 
         // Step 4: Complete employee details
         personalDetailsPage.enterFirstName("Emily")
                           .enterMiddleName("Grace")
                           .enterLastName("Davis")
-                          .enterOtherId("EMP49")
+                          .enterOtherId("EMP89")
                           .selectNationality("Canadian")
                           .selectMaritalStatus("Single")
                           .clickSaveAfterGender()
@@ -128,7 +128,7 @@ public class CompleteHRWorkflowE2ETest {
         adminPage = dashboard.goToAdmin()
                             .assertAdminPageDisplayed();
         AddUserPage addUserPage = adminPage.clickAdd();
-        addUserPage.addNewUser("ESS", "Emily", "Emily Grace Davis", "Enabled", "emily.davis9", "Password123")
+        addUserPage.addNewUser("ESS", "Emily", "Emily Grace Davis", "Enabled", "emily.davis8", "Password123")
                    .clickSave()
                    .assertSuccessToastDisplayed();
 
