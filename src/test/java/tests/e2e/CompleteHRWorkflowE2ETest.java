@@ -64,14 +64,14 @@ public class CompleteHRWorkflowE2ETest {
                                                   .clickAddEmployee();
         PersonalDetailsPage personalDetailsPage = addEmployeePage.enterFirstName("Michael")
                       .enterLastName("Johnson")
-                      .enterEmployeeId("EMP015")
+                      .enterEmployeeId("EMP033")
                       .clickSave();
 
         // Step 5: Complete Personal Details
         personalDetailsPage.enterFirstName("Michael")
                           .enterMiddleName("Robert")
                           .enterLastName("Johnson")
-                          .enterOtherId("EMP123")
+                          .enterOtherId("EMP33")
                           .clickSaveAfterGender()
                           .assertSuccessToastDisplayed();
 
@@ -79,7 +79,7 @@ public class CompleteHRWorkflowE2ETest {
         AdminPage adminPage = dashboard.goToAdmin()
                                       .assertAdminPageDisplayed();
         AddUserPage addUserPage = adminPage.clickAdd();
-        addUserPage.addNewUser("ESS", "Michael", "Michael Robert Johnson", "Enabled", "michael.johnson", "Password123")
+        addUserPage.addNewUser("ESS", "j", "James  Butler", "Enabled", "james.butler", "Password123")
                    .clickSave()
                    .assertSuccessToastDisplayed();
 
@@ -103,7 +103,7 @@ public class CompleteHRWorkflowE2ETest {
         // Step 2: Search existing users
         AdminPage adminPage = dashboard.goToAdmin()
                                       .assertAdminPageDisplayed();
-        adminPage.searchUsers("admin", "Admin", "John", "John Doe", "Enabled")
+        adminPage.searchUsers("admin", "Admin", "R", "Ranga  Akunuri", "Enabled")
                  .assertSearchResultsDisplayed();
 
         // Step 3: Add new employee
@@ -111,14 +111,14 @@ public class CompleteHRWorkflowE2ETest {
                                                   .clickAddEmployee();
         PersonalDetailsPage personalDetailsPage = addEmployeePage.enterFirstName("Emily")
                       .enterLastName("Davis")
-                      .enterEmployeeId("EMP0015")
+                      .enterEmployeeId("EMP039")
                       .clickSave();
 
         // Step 4: Complete employee details
         personalDetailsPage.enterFirstName("Emily")
                           .enterMiddleName("Grace")
                           .enterLastName("Davis")
-                          .enterOtherId("EMP456")
+                          .enterOtherId("EMP39")
                           .selectNationality("Canadian")
                           .selectMaritalStatus("Single")
                           .clickSaveAfterGender()
@@ -128,7 +128,7 @@ public class CompleteHRWorkflowE2ETest {
         adminPage = dashboard.goToAdmin()
                             .assertAdminPageDisplayed();
         AddUserPage addUserPage = adminPage.clickAdd();
-        addUserPage.addNewUser("ESS", "Emily", "Emily Grace Davis", "Enabled", "emily.davis", "Password123")
+        addUserPage.addNewUser("ESS", "Emily", "Emily Grace Davis", "Enabled", "emily.davis7", "Password123")
                    .clickSave()
                    .assertSuccessToastDisplayed();
 

@@ -41,7 +41,7 @@ public class UserManagementE2ETest {
                                       .assertAdminPageDisplayed();
 
         // Step 3: Search for existing users
-        adminPage.searchUsers("Abdelrahman", "Admin", "r", "Ravi M B", "Enabled")
+        adminPage.searchUsers("Abdelrahman", "Admin", "r", "Ranga  Akunuri", "Enabled")
                  .assertSearchResultsDisplayed();
 
         // Step 4: Reset search and add new user
@@ -50,7 +50,7 @@ public class UserManagementE2ETest {
 
         // Step 5: Add a new user
         AddUserPage addUserPage = adminPage.clickAdd();
-        addUserPage.addNewUser("ESS", "r", "Ravi M B", "Enabled", "Abdelrahman", "Password123")
+        addUserPage.addNewUser("ESS", "r", "Ranga  Akunuri", "Enabled", "Abdelrahman5", "Password123")
                    .clickSave()
                    .assertSuccessToastDisplayed();
 

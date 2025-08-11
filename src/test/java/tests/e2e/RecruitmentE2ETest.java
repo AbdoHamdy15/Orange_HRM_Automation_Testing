@@ -44,7 +44,7 @@ public class RecruitmentE2ETest {
         // Step 3: Add a new vacancy
         AddVacancyPage addVacancyPage = recruitmentPage.clickAddVacancy();
         addVacancyPage.addVacancy("Software Testing Engineer", "QA Engineer",
-                                "Junior software tester (0 - 6 months experience)", "a", "Ranga Akunuri", "1")
+                                "Junior software tester (0 - 6 months experience)", "a", "Ranga  Akunuri", "1")
                      .clickSave();
 
         // Step 4: Navigate to Candidates from Vacancy page

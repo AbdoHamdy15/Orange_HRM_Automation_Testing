@@ -1,0 +1,124 @@
+[DEBUG] - [11-08-2025 05:54:31] [main] [org.testng.TestNG] - suiteXmlPath: "C:\Users\hp\AppData\Local\JetBrains\IntelliJIdea2024.1\temp-testng-customsuite.xml"
+[INFO] - [11-08-2025 05:54:33] [main] [org.testng.internal.Utils] - [TestNG] Running:
+  C:\Users\hp\AppData\Local\JetBrains\IntelliJIdea2024.1\temp-testng-customsuite.xml
+
+[INFO] - [11-08-2025 05:54:33] [main] [drivers.GUIDriver] - Initializing driver for browser: chrome
+[INFO] - [11-08-2025 05:54:33] [main] [drivers.ChromeFactory] - Starting Chrome driver...
+[INFO] - [11-08-2025 05:54:35] [main] [drivers.ChromeFactory] - Chrome driver started successfully
+[INFO] - [11-08-2025 05:54:35] [main] [drivers.GUIDriver] - Driver initialized successfully for: chrome
+[INFO] - [11-08-2025 05:54:38] [main] [utilities.BrowserActions] - Navigated to URL:  https://opensource-demo.orangehrmlive.com/
+[INFO] - [11-08-2025 05:54:38] [main] [utilities.Waits] - Waiting for element to be visible: By.cssSelector: div.orangehrm-login-form
+[INFO] - [11-08-2025 05:54:38] [main] [utilities.Waits] - Waiting for element to be present: By.cssSelector: div.orangehrm-login-form
+[INFO] - [11-08-2025 05:54:38] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [11-08-2025 05:54:39] [main] [utilities.ElementActions] - Cleared field :  By.name: username
+[INFO] - [11-08-2025 05:54:39] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [11-08-2025 05:54:39] [main] [utilities.ElementActions] - Data entered:  Admin  in the field:  By.name: username
+[INFO] - [11-08-2025 05:54:39] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [11-08-2025 05:54:39] [main] [utilities.ElementActions] - Cleared field :  By.name: password
+[INFO] - [11-08-2025 05:54:39] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [11-08-2025 05:54:39] [main] [utilities.ElementActions] - Data entered:  admin123  in the field:  By.name: password
+[INFO] - [11-08-2025 05:54:39] [main] [utilities.ElementActions] - Finding element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [11-08-2025 05:54:39] [main] [utilities.ElementActions] - Clicked on the element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [11-08-2025 05:54:39] [main] [utilities.Waits] - Waiting for 2 seconds
+[INFO] - [11-08-2025 05:54:41] [main] [utilities.BrowserActions] - Current URL:  https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
+[INFO] - [11-08-2025 05:54:41] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //a[contains(@href,'leave')]
+[INFO] - [11-08-2025 05:54:41] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //a[contains(@href,'leave')]
+[INFO] - [11-08-2025 05:54:42] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Leave']
+[INFO] - [11-08-2025 05:54:42] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Leave']
+[INFO] - [11-08-2025 05:54:42] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //h6[text()='Leave']
+[INFO] - [11-08-2025 05:54:42] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //h6[text()='Leave']
+[INFO] - [11-08-2025 05:54:42] [main] [utilities.ElementActions] - Finding element:  By.xpath: //h6[text()='Leave']
+[INFO] - [11-08-2025 05:54:42] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='From Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='From Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='From Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Data entered:  2024-01-01  in the field:  By.xpath: //label[text()='From Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='To Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='To Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='To Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Data entered:  2024-12-31  in the field:  By.xpath: //label[text()='To Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='listbox']//span[text()='Scheduled']
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='listbox']//span[text()='Scheduled']
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Finding element:  By.xpath: //div[@role='listbox']//span[text()='Scheduled']
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Selected from dropdown with label 'Status': Scheduled
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='listbox']//span[text()='US - Personal']
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='listbox']//span[text()='US - Personal']
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Finding element:  By.xpath: //div[@role='listbox']//span[text()='US - Personal']
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Selected from dropdown with label 'Leave Type': US - Personal
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.ElementActions] - Data entered:  R  in the field:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='option']/span[text()='Ravi M B']
+[INFO] - [11-08-2025 05:54:43] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='option']/span[text()='Ravi M B']
+[INFO] - [11-08-2025 05:54:50] [main] [drivers.GUIDriver] - Closing browser...
+[INFO] - [11-08-2025 05:54:51] [main] [drivers.GUIDriver] - Browser closed successfully
+[INFO] - [11-08-2025 05:54:51] [main] [drivers.GUIDriver] - Initializing driver for browser: chrome
+[INFO] - [11-08-2025 05:54:51] [main] [drivers.ChromeFactory] - Starting Chrome driver...
+[INFO] - [11-08-2025 05:54:52] [main] [drivers.ChromeFactory] - Chrome driver started successfully
+[INFO] - [11-08-2025 05:54:52] [main] [drivers.GUIDriver] - Driver initialized successfully for: chrome
+[INFO] - [11-08-2025 05:54:54] [main] [utilities.BrowserActions] - Navigated to URL:  https://opensource-demo.orangehrmlive.com/
+[INFO] - [11-08-2025 05:54:54] [main] [utilities.Waits] - Waiting for element to be visible: By.cssSelector: div.orangehrm-login-form
+[INFO] - [11-08-2025 05:54:54] [main] [utilities.Waits] - Waiting for element to be present: By.cssSelector: div.orangehrm-login-form
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.ElementActions] - Cleared field :  By.name: username
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.ElementActions] - Data entered:  Admin  in the field:  By.name: username
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.ElementActions] - Cleared field :  By.name: password
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.ElementActions] - Data entered:  admin123  in the field:  By.name: password
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.ElementActions] - Finding element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.ElementActions] - Clicked on the element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [11-08-2025 05:54:55] [main] [utilities.Waits] - Waiting for 2 seconds
+[INFO] - [11-08-2025 05:54:57] [main] [utilities.BrowserActions] - Current URL:  https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
+[INFO] - [11-08-2025 05:54:57] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //a[contains(@href,'leave')]
+[INFO] - [11-08-2025 05:54:57] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //a[contains(@href,'leave')]
+[INFO] - [11-08-2025 05:54:58] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Leave']
+[INFO] - [11-08-2025 05:54:58] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Leave']
+[INFO] - [11-08-2025 05:54:58] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //h6[text()='Leave']
+[INFO] - [11-08-2025 05:54:58] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //h6[text()='Leave']
+[INFO] - [11-08-2025 05:54:58] [main] [utilities.ElementActions] - Finding element:  By.xpath: //h6[text()='Leave']
+[INFO] - [11-08-2025 05:54:58] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:54:58] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:54:58] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Data entered:  InvalidEmployee  in the field:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //button[normalize-space()='Search']
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Clicked on the element:  By.xpath: //button[normalize-space()='Search']
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Employee Name']/following::span[contains(@class,'oxd-input-field-error-message')][1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //label[text()='Employee Name']/following::span[contains(@class,'oxd-input-field-error-message')][1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //label[text()='Employee Name']/following::span[contains(@class,'oxd-input-field-error-message')][1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Employee Name']/following::span[contains(@class,'oxd-input-field-error-message')][1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Getting text from the element:  By.xpath: //label[text()='Employee Name']/following::span[contains(@class,'oxd-input-field-error-message')][1]  Text:  Invalid
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //i[contains(@class,'--clear')]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Clicked on the element:  By.xpath: //i[contains(@class,'--clear')]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //button[normalize-space()='Search']
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Clicked on the element:  By.xpath: //button[normalize-space()='Search']
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[contains(text(),'Show Leave with Status')]/following::span[contains(@class,'oxd-input-field-error-message')][1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //label[contains(text(),'Show Leave with Status')]/following::span[contains(@class,'oxd-input-field-error-message')][1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //label[contains(text(),'Show Leave with Status')]/following::span[contains(@class,'oxd-input-field-error-message')][1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[contains(text(),'Show Leave with Status')]/following::span[contains(@class,'oxd-input-field-error-message')][1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Getting text from the element:  By.xpath: //label[contains(text(),'Show Leave with Status')]/following::span[contains(@class,'oxd-input-field-error-message')][1]  Text:  Required
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='From Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='From Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='From Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Data entered:  2024-01-01  in the field:  By.xpath: //label[text()='From Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='To Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='To Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='To Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Data entered:  2024-12-31  in the field:  By.xpath: //label[text()='To Date']/following::input[1]
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='listbox']//span[text()='Scheduled']
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='listbox']//span[text()='Scheduled']
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //div[@role='listbox']//span[text()='Scheduled']
+[INFO] - [11-08-2025 05:54:59] [main] [utilities.ElementActions] - Selected from dropdown with label 'Status': Scheduled
+[INFO] - [11-08-2025 05:55:00] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='listbox']//span[text()='US - Personal']
+[INFO] - [11-08-2025 05:55:00] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='listbox']//span[text()='US - Personal']
+[INFO] - [11-08-2025 05:55:00] [main] [utilities.ElementActions] - Finding element:  By.xpath: //div[@role='listbox']//span[text()='US - Personal']
+[INFO] - [11-08-2025 05:55:00] [main] [utilities.ElementActions] - Selected from dropdown with label 'Leave Type': US - Personal
+[INFO] - [11-08-2025 05:55:00] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:55:00] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:55:00] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:55:00] [main] [utilities.ElementActions] - Data entered:  R  in the field:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [11-08-2025 05:55:00] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='option']/span[text()='Ravi M B']
+[INFO] - [11-08-2025 05:55:00] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='option']/span[text()='Ravi M B']
+[INFO] - [11-08-2025 05:55:06] [main] [drivers.GUIDriver] - Closing browser...
+[INFO] - [11-08-2025 05:55:07] [main] [drivers.GUIDriver] - Browser closed successfully
