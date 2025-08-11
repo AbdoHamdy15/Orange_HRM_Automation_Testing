@@ -41,7 +41,7 @@ public class LeaveManagementE2ETest {
 
         // Step 3: Search for leave records with specific criteria
         leavePage.searchLeave("2024-01-01", "2024-12-31", "Scheduled", "US - Personal", 
-                             "James", "James Butler", "Engineering", true)
+                             "R", "Ravi M B", "Engineering", true)
                  .assertSuccessToastDisplayed();
 
         // Step 4: Reset the search form
@@ -50,7 +50,7 @@ public class LeaveManagementE2ETest {
 
         // Step 5: Perform another search with different criteria
         leavePage.searchLeave("2024-06-01", "2024-06-30", "Taken", "US - Sick", 
-                             "Sarah", "Sarah Wilson", "Sales", false)
+                             "R", "Ranga  Akunuri", "Sales", false)
                  .assertSuccessToastDisplayed();
 
         // Step 6: Logout
@@ -86,7 +86,7 @@ public class LeaveManagementE2ETest {
 
         // Step 5: Perform valid search after errors
         leavePage.searchLeave("2024-01-01", "2024-12-31", "Scheduled", "US - Personal", 
-                             "James", "James Butler", "Engineering", true)
+                             "R", "Ravi M B", "Engineering", true)
                  .assertSuccessToastDisplayed();
 
         // Step 6: Logout

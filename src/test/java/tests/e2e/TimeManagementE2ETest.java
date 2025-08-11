@@ -79,7 +79,7 @@ public class TimeManagementE2ETest {
                 .assertInvalidErrorForEmployeeName();
 
         // Step 4: View timesheet for valid employee
-        timePage.viewEmployeeTimesheet("John", "John  Doe")
+        timePage.viewEmployeeTimesheet("R", "Ravi M B")
                 .assertNoTimesheetsFound();
 
         // Step 5: Logout

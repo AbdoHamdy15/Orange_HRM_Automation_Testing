@@ -81,7 +81,7 @@ public class UserManagementE2ETest {
                  .assertInvalidErrorMessageDisplayed();
 
         // Step 4: Perform valid search after error
-        adminPage.searchUsers("admin", "Admin", "John", "John Doe", "Enabled")
+        adminPage.searchUsers("admin", "Admin", "J", "James  Butler", "Enabled")
                  .assertSearchResultsDisplayed();
 
         // Step 5: Logout
