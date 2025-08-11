@@ -86,7 +86,7 @@ public class LeaveManagementE2ETest {
 
         // Step 5: Perform valid search after errors
         leavePage.searchLeave("2024-01-01", "2024-12-31", "Scheduled", "US - Personal", 
-                             "A", "Amelia  Brown", "Engineering", true)
+                             "r", "Ravi M B", "Engineering", true)
                  .assertSuccessToastDisplayed();
 
         // Step 6: Logout

@@ -79,7 +79,7 @@ public class CompleteHRWorkflowE2ETest {
         AdminPage adminPage = dashboard.goToAdmin()
                                       .assertAdminPageDisplayed();
         AddUserPage addUserPage = adminPage.clickAdd();
-        addUserPage.addNewUser("ESS", "j", "James  Butler", "Enabled", "james.butler4", "Password123")
+        addUserPage.addNewUser("ESS", "james", "James  Butler", "Enabled", "james.butler4", "Password123")
                    .clickSave()
                    .assertSuccessToastDisplayed();
 
