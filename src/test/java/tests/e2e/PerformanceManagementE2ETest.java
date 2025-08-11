@@ -27,7 +27,7 @@ public class PerformanceManagementE2ETest {
     @Description("E2E Scenario: Login → Performance → Search Employee Reviews → Reset → Logout")
     @Story("Performance Management - Search and Reset Workflow")
     @Severity(SeverityLevel.CRITICAL)
-    public void testPerformanceSearchAndResetE2E() {
+    public void testEmployeeTrackerE2E() {
         // Initialize page objects
         LoginPage loginPage = new LoginPage(driver);
         

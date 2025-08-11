@@ -54,6 +54,11 @@ public class DashboardPage {
         return this;
     }
 
+    // Getter for dashboard header locator
+    public By getDashboardHeader() {
+        return dashboardHeader;
+    }
+
     // Navigation methods
     @Step("Navigate to Admin page")
     public AdminPage goToAdmin() {

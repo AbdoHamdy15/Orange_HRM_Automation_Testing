@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="All Tests Suite">
+    <listeners>
+        <listener class-name="listeners.TestNGListeners"/>
+    </listeners>
+    
+    <!-- All Tests -->
+    <test name="All Tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <!-- E2E Test Cases -->
+            <class name="tests.e2e.EmployeeOnboardingTest"/>
+            <class name="tests.e2e.RecruitmentE2ETest"/>
+            <class name="tests.e2e.LeaveManagementE2ETest"/>
+            <class name="tests.e2e.PerformanceManagementE2ETest"/>
+            <class name="tests.e2e.TimeManagementE2ETest"/>
+            <class name="tests.e2e.UserManagementE2ETest"/>
+            <class name="tests.e2e.EmployeeInformationE2ETest"/>
+            <class name="tests.e2e.CompleteHRWorkflowE2ETest"/>
+            
+            <!-- Authentication Tests -->
+            <class name="tests.features.LoginTest"/>
+            
+            <!-- Management Tests -->
+            <class name="tests.features.AddEmployeeTest"/>
+            <class name="tests.features.AddUserTest"/>
+            <class name="tests.features.AddCandidateTest"/>
+            
+            <!-- Search Tests -->
+            <class name="tests.features.AdminSearchTest"/>
+            <class name="tests.features.PIMSearchTest"/>
+            <class name="tests.features.LeaveSearchTest"/>
+            <class name="tests.features.RecruitmentSearchTest"/>
+            <class name="tests.features.PerformanceSearchTest"/>
+            <class name="tests.features.TimeSearchTest"/>
+            
+            <!-- MyInfo Tests -->
+            <class name="tests.features.myInfo.PersonalDetailsTest"/>
+            <class name="tests.features.myInfo.ContactDetailsTest"/>
+            <class name="tests.features.myInfo.EmergencyContactsTest"/>
+            <class name="tests.features.myInfo.DependentsTest"/>
+            <class name="tests.features.myInfo.ImmigrationTest"/>
+            <class name="tests.features.myInfo.QualificationsTest"/>
+            <class name="tests.features.myInfo.MembershipsTest"/>
+        </classes>
+    </test>
+</suite>

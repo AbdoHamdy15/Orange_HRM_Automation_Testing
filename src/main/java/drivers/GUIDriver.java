@@ -10,14 +10,15 @@ import static org.testng.Assert.fail;
 
 
 public class GUIDriver {
-    // Thread-safe WebDriver instance
+    //code
     private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+    WebDriver driver;
 
     public GUIDriver() {
         String browserName = System.getProperty("browser", "chrome");
         LogsUtil.info("Initializing driver for browser: " + browserName);
         try {
-            WebDriver driver = getDriver(browserName).startDriver();
+            driver = getDriver(browserName).startDriver();
             setDriver(driver);
             LogsUtil.info("Driver initialized successfully for: " + browserName);
         } catch (Exception e) {
@@ -26,7 +27,7 @@ public class GUIDriver {
             // Fallback to edge if the specified browser fails
             try {
                 LogsUtil.info("Attempting fallback to Edge browser...");
-                WebDriver driver = new EdgeFactory().startDriver();
+                driver = new EdgeFactory().startDriver();
                 setDriver(driver);
                 LogsUtil.info("Fallback to Edge browser successful");
             } catch (Exception fallbackError) {
@@ -39,7 +40,7 @@ public class GUIDriver {
     public GUIDriver(String browserName) {
         LogsUtil.info("Creating driver with specified browser: " + browserName);
         try {
-            WebDriver driver = getDriver(browserName).startDriver();
+            driver = getDriver(browserName).startDriver();
             setDriver(driver);
             LogsUtil.info("Driver created successfully for: " + browserName);
         } catch (Exception e) {
@@ -78,7 +79,7 @@ public class GUIDriver {
         };
     }
 
-    private void setDriver(WebDriver driver) {
+    public static void setDriver(WebDriver driver) {
         driverThreadLocal.set(driver);
     }
 
