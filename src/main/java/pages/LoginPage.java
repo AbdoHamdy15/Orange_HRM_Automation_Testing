@@ -107,6 +107,8 @@ public class LoginPage {
 
     @Step("Assert successful login")
     public DashboardPage assertSuccessfulLogin() {
+        // Light wait before validation
+        waits.waitForSeconds(2);
         validations.validatePageUrl("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
         return new DashboardPage(driver);
     }

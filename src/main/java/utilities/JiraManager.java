@@ -26,76 +26,112 @@ public class JiraManager {
     }
 
     public static String createSummary(String testName, Story story) {
-        String browser = System.getProperty("browser", "Unknown");
-        if (story != null) {
-            return browser + " Automated Test Failure: " + story.value();
-        } else {
-            return browser + " Automated Test Failure: " + testName;
+        String browser = System.getProperty("browser", "chrome");
+        String storyValue = story != null ? story.value() : testName;
+        
+        // Clean up test name (remove package prefix if present)
+        String cleanTestName = testName;
+        if (testName.contains(".")) {
+            cleanTestName = testName.substring(testName.lastIndexOf(".") + 1);
+        }
+        
+        // Create concise summary
+        return String.format("[%s] %s - %s", browser.toUpperCase(), cleanTestName, storyValue);
+    }
+
+    /**
+     * Find the latest log file in the logs directory
+     * @return Path to the latest log file, or null if not found
+     */
+    private static String findLatestLogFile() {
+        try {
+            File logsDir = new File("test-outputs/Logs");
+            if (!logsDir.exists()) {
+                LogsUtil.warn("Logs directory does not exist: " + logsDir.getPath());
+                return null;
+            }
+            
+            File[] logFiles = logsDir.listFiles((dir, name) -> name.startsWith("log_") && name.endsWith(".log"));
+            if (logFiles == null || logFiles.length == 0) {
+                LogsUtil.warn("No log files found in: " + logsDir.getPath());
+                return null;
+            }
+            
+            // Find the most recent log file
+            File latestLog = logFiles[0];
+            for (File logFile : logFiles) {
+                if (logFile.lastModified() > latestLog.lastModified()) {
+                    latestLog = logFile;
+                }
+            }
+            
+            LogsUtil.info("Found latest log file: " + latestLog.getPath());
+            return latestLog.getPath();
+        } catch (Exception e) {
+            LogsUtil.error("Error finding latest log file: " + e.getMessage());
+            return null;
         }
     }
 
     public static String createDescription(ITestResult testResult) {
         StringBuilder description = new StringBuilder();
         
-        description.append("h2. Test Failure Details\n");
+        description.append("h2. Test Failure Summary\n");
         description.append("*Test Name:* ").append(testResult.getName()).append("\n");
         description.append("*Test Class:* ").append(testResult.getTestClass().getName()).append("\n");
-        description.append("*Test Method:* ").append(testResult.getMethod().getMethodName()).append("\n");
+        description.append("*Browser:* ").append(System.getProperty("browser", "chrome")).append("\n");
         description.append("*Failure Time:* ").append(new java.util.Date(testResult.getEndMillis())).append("\n");
-        description.append("*Browser:* ").append(System.getProperty("browser", "Unknown")).append("\n");
         
-        // Add exception details if available (simplified)
+        // Add exception details if available
         if (testResult.getThrowable() != null) {
             description.append("\nh3. Error Details\n");
-            description.append("*Error Message:* ").append(testResult.getThrowable().getMessage()).append("\n");
+            String errorMessage = testResult.getThrowable().getMessage();
+            if (errorMessage != null && errorMessage.length() > 500) {
+                errorMessage = errorMessage.substring(0, 500) + "... [truncated]";
+            }
+            description.append("*Error Message:* ").append(errorMessage).append("\n");
+            
+            // Add stack trace (first few lines only)
+            String stackTrace = java.util.Arrays.toString(testResult.getThrowable().getStackTrace());
+            if (stackTrace.length() > 1000) {
+                stackTrace = stackTrace.substring(0, 1000) + "... [truncated]";
+            }
+            description.append("*Stack Trace:* ").append(stackTrace).append("\n");
         }
         
-        // Add test parameters if available
+        // Add test parameters if available (simplified)
         if (testResult.getParameters() != null && testResult.getParameters().length > 0) {
             description.append("\nh3. Test Parameters\n");
             for (int i = 0; i < testResult.getParameters().length; i++) {
-                description.append("*Parameter ").append(i + 1).append(":* ").append(testResult.getParameters()[i]).append("\n");
-            }
-        }
-        
-        // Add logs content if available
-        String today = TimestampUtils.getTimestamp().substring(0, 10); // YYYY-MM-DD
-        String logPath = "test-outputs/Logs/log_" + today + ".log";
-        
-        // Try to find the actual log file
-        File logsDir = new File("test-outputs/Logs");
-        File latestLog = null;
-        if (logsDir.exists()) {
-            File[] logFiles = logsDir.listFiles((dir, name) -> name.startsWith("log_") && name.endsWith(".log"));
-            if (logFiles != null && logFiles.length > 0) {
-                // Use the most recent log file
-                latestLog = logFiles[logFiles.length - 1];
-                logPath = latestLog.getPath();
-                
-                try {
-                    String logContent = new String(java.nio.file.Files.readAllBytes(latestLog.toPath()));
-                    description.append("\nh3. Test Logs\n");
-                    description.append("{code}\n");
-                    description.append(logContent).append("\n");
-                    description.append("{code}\n");
-                    LogsUtil.info("Logs added to Jira description: " + latestLog.getName());
-                } catch (Exception e) {
-                    LogsUtil.error("Failed to read log file: " + e.getMessage());
+                String param = String.valueOf(testResult.getParameters()[i]);
+                if (param.length() > 100) {
+                    param = param.substring(0, 100) + "... [truncated]";
                 }
+                description.append("*Parameter ").append(i + 1).append(":* ").append(param).append("\n");
             }
         }
         
-        // Add screenshot attachment info
-        String screenshotPath = "test-outputs/screenshots/failed-" + testResult.getName() + ".png";
+        // Add essential test information
+        description.append("\nh3. Test Information\n");
+        description.append("*Test Duration:* ").append((testResult.getEndMillis() - testResult.getStartMillis()) / 1000.0).append(" seconds\n");
+        description.append("*Test Status:* ").append(testResult.getStatus()).append("\n");
+        
+        // Add screenshot and logs info (without content)
         description.append("\nh3. Attachments\n");
+        String screenshotPath = "test-outputs/screenshots/failed-" + testResult.getName() + ".png";
         if (new File(screenshotPath).exists()) {
             description.append("*Screenshot:* ").append(screenshotPath).append("\n");
         }
         
-        // Add log file info
-        if (latestLog != null) {
-            description.append("*Logs File:* ").append(latestLog.getPath()).append("\n");
+        // Add log file info (without content)
+        String latestLogPath = findLatestLogFile();
+        if (latestLogPath != null) {
+            description.append("*Logs File:* ").append(latestLogPath).append("\n");
         }
+        
+        description.append("\nh3. Additional Information\n");
+        description.append("For detailed logs and screenshots, please check the attached files.\n");
+        description.append("Test executed on: ").append(System.getProperty("os.name")).append(" ").append(System.getProperty("os.version")).append("\n");
         
         return description.toString();
     }
@@ -130,21 +166,40 @@ public class JiraManager {
         
         // Get screenshot and logs paths
         String screenshotPath = "test-outputs/screenshots/failed-" + testResult.getName() + ".png";
-        String logPath = "test-outputs/Logs/log_" + TimestampUtils.getTimestamp().substring(0, 10) + ".log";
+        
+        // Fix log file path to match actual naming convention
+        String latestLogPath = findLatestLogFile();
+        
+        LogsUtil.info("Checking attachments for Jira issue:");
+        LogsUtil.info("Screenshot path: " + screenshotPath);
+        LogsUtil.info("Log path: " + latestLogPath);
         
         // Check which files exist and report with multiple attachments
         java.util.List<String> attachments = new java.util.ArrayList<>();
         
-        if (new File(screenshotPath).exists()) {
+        File screenshotFile = new File(screenshotPath);
+        File logFile = new File(latestLogPath);
+        
+        if (screenshotFile.exists()) {
             attachments.add(screenshotPath);
+            LogsUtil.info("Screenshot found and will be attached: " + screenshotPath);
+        } else {
+            LogsUtil.warn("Screenshot not found: " + screenshotPath);
         }
-        if (new File(logPath).exists()) {
-            attachments.add(logPath);
+        
+        if (logFile.exists()) {
+            attachments.add(latestLogPath);
+            LogsUtil.info("Log file found and will be attached: " + latestLogPath);
+        } else {
+            LogsUtil.warn("Log file not found: " + latestLogPath);
         }
+        
+        LogsUtil.info("Total attachments to be sent: " + attachments.size());
         
         if (!attachments.isEmpty()) {
             reportFailureWithMultipleAttachments(projectKey, summary, description, attachments.toArray(new String[0]));
         } else {
+            LogsUtil.warn("No attachments found, sending issue without attachments");
             reportFailure(projectKey, summary, description, null);
         }
     }
@@ -156,109 +211,22 @@ public class JiraManager {
             return;
         }
         
+        LogsUtil.info("Reporting failure with multiple attachments to Jira:");
+        LogsUtil.info("Project Key: " + projectKey);
+        LogsUtil.info("Summary: " + summary);
+        LogsUtil.info("Number of attachments: " + filePaths.length);
+        
+        for (int i = 0; i < filePaths.length; i++) {
+            File file = new File(filePaths[i]);
+            LogsUtil.info("Attachment " + (i + 1) + ": " + filePaths[i] + " (exists: " + file.exists() + ", size: " + file.length() + " bytes)");
+        }
+        
         try {
             reporter.reportBugWithMultipleAttachments(projectKey, summary, description, filePaths);
+            LogsUtil.info("Successfully reported bug with attachments to Jira");
         } catch (Exception e) {
             LogsUtil.error("Failed to report bug with attachments to Jira: " + e.getMessage());
-        }
-    }
-
-    public static void addComment(String issueKey, String comment) {
-        JiraReporter reporter = getInstance();
-        if (reporter == null) {
-            LogsUtil.warn("Jira integration not available. Skipping comment.");
-            return;
-        }
-        
-        try {
-            reporter.addComment(issueKey, comment);
-        } catch (Exception e) {
-            LogsUtil.error("Failed to add comment to Jira: " + e.getMessage());
-        }
-    }
-
-    public static void transitionIssue(String issueKey, String transitionName) {
-        JiraReporter reporter = getInstance();
-        if (reporter == null) {
-            LogsUtil.warn("Jira integration not available. Skipping transition.");
-            return;
-        }
-        
-        try {
-            reporter.transitionIssue(issueKey, transitionName);
-        } catch (Exception e) {
-            LogsUtil.error("Failed to transition issue in Jira: " + e.getMessage());
-        }
-    }
-
-    public static void assignIssue(String issueKey, String assignee) {
-        JiraReporter reporter = getInstance();
-        if (reporter == null) {
-            LogsUtil.warn("Jira integration not available. Skipping assignment.");
-            return;
-        }
-        
-        try {
-            reporter.assignIssue(issueKey, assignee);
-        } catch (Exception e) {
-            LogsUtil.error("Failed to assign issue in Jira: " + e.getMessage());
-        }
-    }
-
-    public static void updateIssueSummary(String issueKey, String newSummary) {
-        JiraReporter reporter = getInstance();
-        if (reporter == null) {
-            LogsUtil.warn("Jira integration not available. Skipping update.");
-            return;
-        }
-        
-        try {
-            reporter.updateIssueSummary(issueKey, newSummary);
-        } catch (Exception e) {
-            LogsUtil.error("Failed to update issue summary in Jira: " + e.getMessage());
-        }
-    }
-
-    public static void updateIssueDescription(String issueKey, String newDescription) {
-        JiraReporter reporter = getInstance();
-        if (reporter == null) {
-            LogsUtil.warn("Jira integration not available. Skipping update.");
-            return;
-        }
-        
-        try {
-            reporter.updateIssueDescription(issueKey, newDescription);
-        } catch (Exception e) {
-            LogsUtil.error("Failed to update issue description in Jira: " + e.getMessage());
-        }
-    }
-
-    public static com.fasterxml.jackson.databind.JsonNode getIssue(String issueKey) {
-        JiraReporter reporter = getInstance();
-        if (reporter == null) {
-            LogsUtil.warn("Jira integration not available. Skipping get issue.");
-            return null;
-        }
-        
-        try {
-            return reporter.getIssue(issueKey);
-        } catch (Exception e) {
-            LogsUtil.error("Failed to get issue from Jira: " + e.getMessage());
-            return null;
-        }
-    }
-
-    public static void deleteIssue(String issueKey) {
-        JiraReporter reporter = getInstance();
-        if (reporter == null) {
-            LogsUtil.warn("Jira integration not available. Skipping delete.");
-            return;
-        }
-        
-        try {
-            reporter.deleteIssue(issueKey);
-        } catch (Exception e) {
-            LogsUtil.error("Failed to delete issue in Jira: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

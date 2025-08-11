@@ -11,10 +11,10 @@ public class AllureUtils {
 
     public static final String ALLURE_RESULTS_PATH = "test-outputs/allure-results";
     static String REPORT_PATH = "test-outputs/allure-report";
+    static String HISTORY_PATH = "test-outputs/allure-history";
     static String USER_HOME = System.getProperty("user.home");
     static String ALLURE_PATH = USER_HOME + File.separator + ".m2" + File.separator + "repository"
-            + File.separator + "allure" + File.separator + "allure-2.33.0" + File.separator
-            + "bin" + File.separator + "allure";
+            + File.separator + "io" + File.separator + "qameta" + File.separator + "allure" + File.separator + "allure-commandline" + File.separator + "2.24.0" + File.separator + "bin" + File.separator + "allure";
 
     private AllureUtils() {
         super();
@@ -22,13 +22,15 @@ public class AllureUtils {
 
     public static void attacheLogsToAllureReport() {
         try {
-            File logFile = FilesUtils.getLatestFile(LogsUtil.LOGS_PATH);
-            if (!logFile.exists()) {
-                LogsUtil.warn("Log file does not exist: " + LogsUtil.LOGS_PATH);
-                return;
+            String today = TimestampUtils.getTimestamp().substring(0, 10); // YYYY-MM-DD
+            String logPath = "test-outputs/Logs/log_" + today + ".log";
+            File logFile = new File(logPath);
+            if (logFile.exists()) {
+                Allure.addAttachment("Test Logs", "text/plain", Files.newInputStream(Path.of(logPath)), "log");
+                LogsUtil.info("Logs attached to Allure report: " + logPath);
+            } else {
+                LogsUtil.warn("Log file does not exist: " + logPath);
             }
-            Allure.addAttachment("logs.log", readString(Path.of(logFile.getPath())));
-            LogsUtil.info("Logs attached to Allure report");
         } catch (Exception e) {
             LogsUtil.error("Failed to attach logs to Allure report: " + e.getMessage());
         }
@@ -37,7 +39,7 @@ public class AllureUtils {
     public static void copyHistory() {
         try {
             File oldReportHistory = new File(REPORT_PATH + "/history");
-            File newHistoryDir = new File(ALLURE_RESULTS_PATH + "/history");
+            File newHistoryDir = new File(HISTORY_PATH);
 
             if (oldReportHistory.exists()) {
                 FilesUtils.copyFolder(oldReportHistory, newHistoryDir);

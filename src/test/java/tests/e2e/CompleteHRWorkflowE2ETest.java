@@ -111,7 +111,7 @@ public class CompleteHRWorkflowE2ETest {
                                                   .clickAddEmployee();
         PersonalDetailsPage personalDetailsPage = addEmployeePage.enterFirstName("Emily")
                       .enterLastName("Davis")
-                      .enterEmployeeId("EM5005")
+                      .enterEmployeeId("EM005")
                       .clickSave();
 
         // Step 4: Complete employee details

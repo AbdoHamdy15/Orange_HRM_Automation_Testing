@@ -107,4 +107,10 @@ public class EmployeeInformationE2ETest {
                 .assertLoginPageDisplayed();
     }
 
+    @AfterMethod
+    public void teardown() {
+        if (driver != null) {
+            driver.teardown();
+        }
+    }
 }

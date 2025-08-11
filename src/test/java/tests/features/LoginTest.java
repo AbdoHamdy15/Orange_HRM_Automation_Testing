@@ -12,7 +12,7 @@ import pages.LoginPage;
 @Listeners(listeners.TestNGListeners.class)
 public class LoginTest {
 
-    private static final String VALID_USERNAME = "Admin1";
+    private static final String VALID_USERNAME = "Admin";
     private static final String VALID_PASSWORD = "admin123";
     private GUIDriver driver;
 

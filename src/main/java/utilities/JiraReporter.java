@@ -37,6 +37,9 @@ public class JiraReporter implements AutoCloseable {
 
     public String createIssue(String projectKey, String summary, String description) {
         try {
+            // Truncate description if it exceeds Jira's limit
+            String truncatedDescription = truncateDescription(description);
+            
             // Build JSON payload
             ObjectNode issueJson = objectMapper.createObjectNode();
             ObjectNode fields = issueJson.putObject("fields");
@@ -51,7 +54,7 @@ public class JiraReporter implements AutoCloseable {
             
             // Summary and description
             fields.put("summary", summary);
-            fields.put("description", description);
+            fields.put("description", truncatedDescription);
 
             // Create HTTP request
             HttpRequest request = HttpRequest.newBuilder()
@@ -77,6 +80,28 @@ public class JiraReporter implements AutoCloseable {
             LogsUtil.error("Failed to create JIRA issue: " + e.getMessage());
             return null;
         }
+    }
+
+    /**
+     * Truncate description to fit Jira's 32,767 character limit
+     * @param description The original description
+     * @return Truncated description that fits within Jira's limit
+     */
+    private String truncateDescription(String description) {
+        final int JIRA_DESCRIPTION_LIMIT = 32767;
+        
+        if (description == null || description.length() <= JIRA_DESCRIPTION_LIMIT) {
+            return description;
+        }
+        
+        // Truncate and add note about truncation
+        String truncated = description.substring(0, JIRA_DESCRIPTION_LIMIT - 200); // Leave space for truncation note
+        truncated += "\n\n[DESCRIPTION TRUNCATED - Original length: " + description.length() + " characters]";
+        truncated += "\n[Full description available in test logs]";
+        
+        LogsUtil.warn("Description truncated from " + description.length() + " to " + truncated.length() + " characters for Jira compatibility");
+        
+        return truncated;
     }
 
     public void reportBug(String projectKey, String summary, String description) {

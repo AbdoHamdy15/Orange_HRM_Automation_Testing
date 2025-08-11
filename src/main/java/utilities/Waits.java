@@ -17,6 +17,18 @@ public class Waits {
 
     // ==================== ESSENTIAL WAIT METHODS ====================
 
+    // Simple wait for specified seconds
+    @Step("Waiting for {seconds} seconds")
+    public void waitForSeconds(int seconds) {
+        LogsUtil.info("Waiting for " + seconds + " seconds");
+        try {
+            Thread.sleep(seconds * 1000L);
+        } catch (InterruptedException e) {
+            LogsUtil.error("Wait interrupted: " + e.getMessage());
+            Thread.currentThread().interrupt();
+        }
+    }
+
     // Wait for element to be present
     @Step("Waiting for element to be present: {locator}")
     public WebElement waitForElementPresent(By locator) {

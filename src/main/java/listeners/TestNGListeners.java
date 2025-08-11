@@ -14,6 +14,7 @@ import static utilities.PropertiesUtils.loadProperties;
 public class TestNGListeners implements IExecutionListener, ITestListener, IInvokedMethodListener {
 
     File allure_results = new File("test-outputs/allure-results");
+    File allure_history = new File("test-outputs/allure-history");
     File logs = new File("test-outputs/Logs");
     File screenshots = new File("test-outputs/screenshots");
 
@@ -23,24 +24,24 @@ public class TestNGListeners implements IExecutionListener, ITestListener, IInvo
         LogsUtil.info("Test Execution started");
         loadProperties();
 
-        // Preserve history folder
-        File historyDir = new File(allure_results, "history");
+        // Preserve history folder from the new history directory
         File tempHistoryDir = new File("temp-history");
-        if (historyDir.exists()) {
-            FilesUtils.copyDirectory(historyDir, tempHistoryDir);
+        if (allure_history.exists()) {
+            FilesUtils.copyDirectory(allure_history, tempHistoryDir);
         }
 
         FilesUtils.cleanDirectory(allure_results);
 
-        // Restore history folder
+        // Restore history folder to the new history directory
         if (tempHistoryDir.exists()) {
-            FilesUtils.copyDirectory(tempHistoryDir, historyDir);
+            FilesUtils.copyDirectory(tempHistoryDir, allure_history);
             FilesUtils.deleteDirectory(tempHistoryDir);
         }
 
         FilesUtils.cleanDirectory(logs);
         FilesUtils.cleanDirectory(screenshots);
         FilesUtils.createDirectory(allure_results);
+        FilesUtils.createDirectory(allure_history);
         FilesUtils.createDirectory(logs);
         FilesUtils.createDirectory(screenshots);
     }
