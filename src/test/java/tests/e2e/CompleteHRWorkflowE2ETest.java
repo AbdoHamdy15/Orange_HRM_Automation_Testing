@@ -64,7 +64,7 @@ public class CompleteHRWorkflowE2ETest {
                                                   .clickAddEmployee();
         PersonalDetailsPage personalDetailsPage = addEmployeePage.enterFirstName("Michael")
                       .enterLastName("Johnson")
-                      .enterEmployeeId("EMP018")
+                      .enterEmployeeId("EP08201")
                       .clickSave();
 
         // Step 5: Complete Personal Details
@@ -79,7 +79,7 @@ public class CompleteHRWorkflowE2ETest {
         AdminPage adminPage = dashboard.goToAdmin()
                                       .assertAdminPageDisplayed();
         AddUserPage addUserPage = adminPage.clickAdd();
-        addUserPage.addNewUser("ESS", "james", "James  Butler", "Enabled", "james.butler86", "Password123")
+        addUserPage.addNewUser("ESS", "a", "Peter Mac Anderson", "Enabled", "james.butler86", "Password123")
                    .clickSave()
                    .assertSuccessToastDisplayed();
 

@@ -24,8 +24,7 @@ public class AddUserTest {
     private GUIDriver driver;
     private AddUserPage addUserPage;
 
-    public AddUserTest(HashMap<String, String> userData) {
-    }
+
 
     @BeforeMethod
     public void setup() {

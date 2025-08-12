@@ -1,0 +1,146 @@
+[DEBUG] - [12-08-2025 03:27:31] [main] [org.testng.TestNG] - suiteXmlPath: "C:\Users\hp\AppData\Local\JetBrains\IntelliJIdea2024.1\temp-testng-customsuite.xml"
+[INFO] - [12-08-2025 03:27:33] [main] [org.testng.internal.Utils] - [TestNG] Running:
+  C:\Users\hp\AppData\Local\JetBrains\IntelliJIdea2024.1\temp-testng-customsuite.xml
+
+[INFO] - [12-08-2025 03:27:34] [main] [drivers.GUIDriver] - Initializing driver for browser: chrome
+[INFO] - [12-08-2025 03:27:34] [main] [drivers.ChromeFactory] - Starting Chrome driver...
+[INFO] - [12-08-2025 03:27:36] [main] [drivers.ChromeFactory] - Chrome driver started successfully
+[INFO] - [12-08-2025 03:27:36] [main] [drivers.GUIDriver] - Driver initialized successfully for: chrome
+[INFO] - [12-08-2025 03:27:39] [main] [utilities.BrowserActions] - Navigated to URL:  https://opensource-demo.orangehrmlive.com/
+[INFO] - [12-08-2025 03:27:39] [main] [utilities.Waits] - Waiting for element to be visible: By.cssSelector: div.orangehrm-login-form
+[INFO] - [12-08-2025 03:27:39] [main] [utilities.Waits] - Waiting for element to be present: By.cssSelector: div.orangehrm-login-form
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.ElementActions] - Cleared field :  By.name: username
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.ElementActions] - Data entered:  Admin  in the field:  By.name: username
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.ElementActions] - Cleared field :  By.name: password
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.ElementActions] - Data entered:  admin123  in the field:  By.name: password
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.ElementActions] - Finding element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.ElementActions] - Clicked on the element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [12-08-2025 03:27:40] [main] [utilities.Waits] - Waiting for 2 seconds
+[INFO] - [12-08-2025 03:27:42] [main] [utilities.ElementActions] - Finding element:  By.xpath: //h6[text()='Dashboard']
+[INFO] - [12-08-2025 03:27:42] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //a[contains(@href,'admin')]
+[INFO] - [12-08-2025 03:27:42] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //a[contains(@href,'admin')]
+[INFO] - [12-08-2025 03:27:43] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Admin']
+[INFO] - [12-08-2025 03:27:43] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Admin']
+[INFO] - [12-08-2025 03:27:44] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Admin']
+[INFO] - [12-08-2025 03:27:44] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Admin']
+[INFO] - [12-08-2025 03:27:44] [main] [utilities.ElementActions] - Finding element:  By.xpath: //button[normalize-space()='Add']
+[INFO] - [12-08-2025 03:27:44] [main] [utilities.ElementActions] - Clicked on the element:  By.xpath: //button[normalize-space()='Add']
+[INFO] - [12-08-2025 03:27:44] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //h6[text()='Add User']
+[INFO] - [12-08-2025 03:27:44] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //h6[text()='Add User']
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='User Role']/following::div[@class='oxd-select-wrapper'][1]
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='listbox']//span[text()='Admin']
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='listbox']//span[text()='Admin']
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.ElementActions] - Finding element:  By.xpath: //div[@role='listbox']//span[text()='Admin']
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.ElementActions] - Selected from custom dropdown: Admin
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='option'] | //div[@class='oxd-autocomplete-dropdown'] | //ul[@class='oxd-autocomplete-dropdown']
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='option'] | //div[@class='oxd-autocomplete-dropdown'] | //ul[@class='oxd-autocomplete-dropdown']
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='option'] | //div[@class='oxd-autocomplete-dropdown']//div | //ul[@class='oxd-autocomplete-dropdown']//li
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='option'] | //div[@class='oxd-autocomplete-dropdown']//div | //ul[@class='oxd-autocomplete-dropdown']//li
+[INFO] - [12-08-2025 03:27:45] [main] [utilities.ElementActions] - Found 1 suggestions
+[INFO] - [12-08-2025 03:27:46] [main] [utilities.ElementActions] - Selected suggestion: Ravi M B
+[INFO] - [12-08-2025 03:27:46] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Status']/following::div[@class='oxd-select-wrapper'][1]
+[INFO] - [12-08-2025 03:27:46] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='listbox']//span[text()='Enabled']
+[INFO] - [12-08-2025 03:27:46] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='listbox']//span[text()='Enabled']
+[INFO] - [12-08-2025 03:27:46] [main] [utilities.ElementActions] - Finding element:  By.xpath: //div[@role='listbox']//span[text()='Enabled']
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Selected from custom dropdown: Enabled
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Username']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='Username']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Username']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Data entered:  useradmin01a  in the field:  By.xpath: //label[text()='Username']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Password']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='Password']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Password']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Data entered:  Password_123  in the field:  By.xpath: //label[text()='Password']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Confirm Password']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='Confirm Password']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Confirm Password']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Data entered:  Password_123  in the field:  By.xpath: //label[text()='Confirm Password']/following::input[1]
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Finding element:  By.xpath: //button[contains(@class, 'oxd-button') and text()=' Save ']
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.ElementActions] - Clicked on the element:  By.xpath: //button[contains(@class, 'oxd-button') and text()=' Save ']
+[INFO] - [12-08-2025 03:27:47] [main] [utilities.Waits] - Waiting for toast message to be present: By.cssSelector: .oxd-toast-content
+[INFO] - [12-08-2025 03:27:50] [main] [drivers.GUIDriver] - Closing browser...
+[INFO] - [12-08-2025 03:27:52] [main] [drivers.GUIDriver] - Browser closed successfully
+[INFO] - [12-08-2025 03:27:52] [main] [drivers.GUIDriver] - Initializing driver for browser: chrome
+[INFO] - [12-08-2025 03:27:52] [main] [drivers.ChromeFactory] - Starting Chrome driver...
+[INFO] - [12-08-2025 03:27:53] [main] [drivers.ChromeFactory] - Chrome driver started successfully
+[INFO] - [12-08-2025 03:27:53] [main] [drivers.GUIDriver] - Driver initialized successfully for: chrome
+[INFO] - [12-08-2025 03:27:56] [main] [utilities.BrowserActions] - Navigated to URL:  https://opensource-demo.orangehrmlive.com/
+[INFO] - [12-08-2025 03:27:56] [main] [utilities.Waits] - Waiting for element to be visible: By.cssSelector: div.orangehrm-login-form
+[INFO] - [12-08-2025 03:27:56] [main] [utilities.Waits] - Waiting for element to be present: By.cssSelector: div.orangehrm-login-form
+[INFO] - [12-08-2025 03:27:56] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [12-08-2025 03:27:56] [main] [utilities.ElementActions] - Cleared field :  By.name: username
+[INFO] - [12-08-2025 03:27:56] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [12-08-2025 03:27:56] [main] [utilities.ElementActions] - Data entered:  Admin  in the field:  By.name: username
+[INFO] - [12-08-2025 03:27:56] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [12-08-2025 03:27:57] [main] [utilities.ElementActions] - Cleared field :  By.name: password
+[INFO] - [12-08-2025 03:27:57] [main] [utilities.ElementActions] - Finding element:  By.name: password
+[INFO] - [12-08-2025 03:27:57] [main] [utilities.ElementActions] - Data entered:  admin123  in the field:  By.name: password
+[INFO] - [12-08-2025 03:27:57] [main] [utilities.ElementActions] - Finding element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [12-08-2025 03:27:57] [main] [utilities.ElementActions] - Clicked on the element:  By.cssSelector: button.orangehrm-login-button
+[INFO] - [12-08-2025 03:27:57] [main] [utilities.Waits] - Waiting for 2 seconds
+[INFO] - [12-08-2025 03:27:59] [main] [utilities.ElementActions] - Finding element:  By.xpath: //h6[text()='Dashboard']
+[INFO] - [12-08-2025 03:27:59] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //a[contains(@href,'admin')]
+[INFO] - [12-08-2025 03:27:59] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //a[contains(@href,'admin')]
+[INFO] - [12-08-2025 03:28:00] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Admin']
+[INFO] - [12-08-2025 03:28:00] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Admin']
+[INFO] - [12-08-2025 03:28:00] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Admin']
+[INFO] - [12-08-2025 03:28:00] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //h6[contains(@class,'oxd-text--h6') and text()='Admin']
+[INFO] - [12-08-2025 03:28:00] [main] [utilities.ElementActions] - Finding element:  By.xpath: //button[normalize-space()='Add']
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.ElementActions] - Clicked on the element:  By.xpath: //button[normalize-space()='Add']
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //h6[text()='Add User']
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //h6[text()='Add User']
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='User Role']/following::div[@class='oxd-select-wrapper'][1]
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='listbox']//span[text()='ESS']
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='listbox']//span[text()='ESS']
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.ElementActions] - Finding element:  By.xpath: //div[@role='listbox']//span[text()='ESS']
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.ElementActions] - Selected from custom dropdown: ESS
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //label[text()='Employee Name']/following::input[1]
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='option'] | //div[@class='oxd-autocomplete-dropdown'] | //ul[@class='oxd-autocomplete-dropdown']
+[INFO] - [12-08-2025 03:28:01] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='option'] | //div[@class='oxd-autocomplete-dropdown'] | //ul[@class='oxd-autocomplete-dropdown']
+[INFO] - [12-08-2025 03:28:02] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='option'] | //div[@class='oxd-autocomplete-dropdown']//div | //ul[@class='oxd-autocomplete-dropdown']//li
+[INFO] - [12-08-2025 03:28:02] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='option'] | //div[@class='oxd-autocomplete-dropdown']//div | //ul[@class='oxd-autocomplete-dropdown']//li
+[INFO] - [12-08-2025 03:28:02] [main] [utilities.ElementActions] - Found 1 suggestions
+[INFO] - [12-08-2025 03:28:03] [main] [utilities.ElementActions] - Selected suggestion: Amelia Brown
+[INFO] - [12-08-2025 03:28:03] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Status']/following::div[@class='oxd-select-wrapper'][1]
+[INFO] - [12-08-2025 03:28:03] [main] [utilities.Waits] - Waiting for element to be visible: By.xpath: //div[@role='listbox']//span[text()='Disabled']
+[INFO] - [12-08-2025 03:28:03] [main] [utilities.Waits] - Waiting for element to be present: By.xpath: //div[@role='listbox']//span[text()='Disabled']
+[INFO] - [12-08-2025 03:28:03] [main] [utilities.ElementActions] - Finding element:  By.xpath: //div[@role='listbox']//span[text()='Disabled']
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Selected from custom dropdown: Disabled
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Username']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='Username']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Username']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Data entered:  user01a  in the field:  By.xpath: //label[text()='Username']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Password']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='Password']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Password']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Data entered:  EssPass_123  in the field:  By.xpath: //label[text()='Password']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Confirm Password']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Cleared field :  By.xpath: //label[text()='Confirm Password']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Finding element:  By.xpath: //label[text()='Confirm Password']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Data entered:  EssPass_123  in the field:  By.xpath: //label[text()='Confirm Password']/following::input[1]
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Finding element:  By.xpath: //button[contains(@class, 'oxd-button') and text()=' Save ']
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.ElementActions] - Clicked on the element:  By.xpath: //button[contains(@class, 'oxd-button') and text()=' Save ']
+[INFO] - [12-08-2025 03:28:04] [main] [utilities.Waits] - Waiting for toast message to be present: By.cssSelector: .oxd-toast-content
+[INFO] - [12-08-2025 03:28:06] [main] [drivers.GUIDriver] - Closing browser...
+[INFO] - [12-08-2025 03:28:06] [main] [drivers.GUIDriver] - Browser closed successfully
+[INFO] - [12-08-2025 03:28:06] [main] [drivers.GUIDriver] - Initializing driver for browser: chrome
+[INFO] - [12-08-2025 03:28:06] [main] [drivers.ChromeFactory] - Starting Chrome driver...
+[INFO] - [12-08-2025 03:28:07] [main] [drivers.ChromeFactory] - Chrome driver started successfully
+[INFO] - [12-08-2025 03:28:07] [main] [drivers.GUIDriver] - Driver initialized successfully for: chrome
+[INFO] - [12-08-2025 03:28:10] [main] [utilities.BrowserActions] - Navigated to URL:  https://opensource-demo.orangehrmlive.com/
+[INFO] - [12-08-2025 03:28:10] [main] [utilities.Waits] - Waiting for element to be visible: By.cssSelector: div.orangehrm-login-form
+[INFO] - [12-08-2025 03:28:10] [main] [utilities.Waits] - Waiting for element to be present: By.cssSelector: div.orangehrm-login-form
+[INFO] - [12-08-2025 03:28:12] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [12-08-2025 03:28:12] [main] [utilities.ElementActions] - Cleared field :  By.name: username
+[INFO] - [12-08-2025 03:28:12] [main] [utilities.ElementActions] - Finding element:  By.name: username
+[INFO] - [12-08-2025 03:28:12] [main] [utilities.ElementActions] - Data entered:  Admin  in the field:  By.name: username
+[INFO] - [12-08-2025 03:28:12] [main] [utilities.ElementActions] - Finding element:  By.name: password

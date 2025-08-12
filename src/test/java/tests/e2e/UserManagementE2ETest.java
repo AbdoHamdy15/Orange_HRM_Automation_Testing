@@ -50,7 +50,7 @@ public class UserManagementE2ETest {
 
         // Step 5: Add a new user
         AddUserPage addUserPage = adminPage.clickAdd();
-        addUserPage.addNewUser("ESS", "ranga", "Ranga  Akunuri", "Enabled", "Abdelrahman5", "Password123")
+        addUserPage.addNewUser("ESS", "a", "Peter Mac Anderson", "Enabled", "Abdelrahman5", "Password123")
                    .clickSave()
                    .assertSuccessToastDisplayed();
 
