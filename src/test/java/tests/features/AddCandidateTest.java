@@ -23,9 +23,6 @@ public class AddCandidateTest {
     private GUIDriver driver;
     private AddCandidatePage addCandidatePage;
 
-    public AddCandidateTest(HashMap<String, String> candidateData) {
-    }
-
     @BeforeMethod
     public void setup() {
         driver = new GUIDriver();

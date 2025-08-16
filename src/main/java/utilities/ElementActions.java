@@ -73,12 +73,12 @@ public class ElementActions {
     public void selectFromDropdown(By dropdownLocator, String optionText) {
         WebElement dropdown = findElement(dropdownLocator);
         dropdown.click();
-        
-        By optionLocator = By.xpath("//div[@role='listbox']//span[text()='" + optionText + "']");
+
+        By optionLocator = By.xpath("//div[@role='listbox']//span[text()=\"" + optionText + "\"]");
         waits.waitForElementVisible(optionLocator);
         WebElement option = findElement(optionLocator);
         option.click();
-        
+
         LogsUtil.info("Selected from custom dropdown: " + optionText);
     }
 
@@ -93,7 +93,7 @@ public class ElementActions {
 
             if (targetDropdown != null) {
                 targetDropdown.click();
-                By optionLocator = By.xpath("//div[@role='listbox']//span[text()='" + optionText + "']");
+                By optionLocator = By.xpath("//div[@role='listbox']//span[text()=\"" + optionText + "\"]");
                 waits.waitForElementVisible(optionLocator);
                 WebElement option = findElement(optionLocator);
                 option.click();
@@ -375,6 +375,13 @@ public class ElementActions {
         waits.waitForElementClickable(locator);
         element.sendKeys(filePath);
         LogsUtil.info("Uploaded file: ", filePath, " to element: ", locator.toString());
+    }
+
+    // Upload file by clicking button
+    @Step("Uploading file by clicking button: {filePath}")
+    public void uploadFileByButton(By buttonLocator, String filePath) {
+        click(buttonLocator);
+        LogsUtil.info("Clicked upload button for file: ", filePath);
     }
 
     // Find element (no wait, no logging)

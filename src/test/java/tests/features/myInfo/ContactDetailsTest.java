@@ -35,12 +35,7 @@ public class ContactDetailsTest {
     @Description("Test updating contact details with valid information")
     @Severity(SeverityLevel.CRITICAL)
     public void testValidContactDetails() {
-        contactDetailsPage.enterStreet1("123 Main St")
-                          .enterStreet2("Apt 4B")
-                          .enterCity("Cairo")
-                          .enterState("Cairo")
-                          .enterZipCode("12345")
-                          .selectCountry("Egypt")
+        contactDetailsPage.fillContactDetailsBasic("123 Main St", "Cairo", "Egypt")
                           .enterHomePhone("123-456-7890")
                           .enterMobile("098-765-4321")
                           .enterWorkPhone("555-123-4567")
@@ -55,9 +50,7 @@ public class ContactDetailsTest {
     @Description("Test contact details validation with empty required fields")
     @Severity(SeverityLevel.NORMAL)
     public void testInvalidContactDetails() {
-        contactDetailsPage.enterStreet1("")
-                          .enterCity("")
-                          .selectCountry("")
+        contactDetailsPage.fillContactDetailsBasic("", "", "")
                           .clickSave()
                           .assertSpecificErrorDisplayed("Required");
     }

@@ -26,7 +26,7 @@ public class QualificationsPage {
     
     // Education Locators
     private final By addEducationButton = By.xpath("//h6[text()='Education']/following::button[contains(@class,'oxd-button--text') and normalize-space()='Add'][1]");
-    private final By levelDropdown = By.xpath("//label[contains(text(),'Level')]/following::div[contains(@class,'oxd-select-wrapper')][1] | //div[contains(@class,'oxd-select-text-input') and contains(text(),'Select')]");
+    private final By levelDropdown = By.xpath("//label[normalize-space()='Level']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text-input')]");
     private final By instituteInput = By.xpath("//label[contains(text(),'Institute')]/following::input[1]");
     private final By majorInput = By.xpath("//label[contains(text(),'Major')]/following::input[1]");
     private final By yearInput = By.xpath("//label[contains(text(),'Year')]/following::input[1]");
@@ -37,14 +37,14 @@ public class QualificationsPage {
     
     // Skills Locators
     private final By addSkillsButton = By.xpath("//h6[text()='Skills']/following::button[contains(@class,'oxd-button--text') and normalize-space()='Add'][1]");
-    private final By skillDropdown = By.xpath("//label[contains(text(),'Skill')]/following::div[contains(@class,'oxd-select-wrapper')][1]");
+    private final By skillDropdown = By.xpath("//label[normalize-space()='Skill']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text-input')]");
     private final By yearsOfExperienceInput = By.xpath("//label[contains(text(),'Years of Experience')]/following::input[1]");
     private final By skillCommentInput = By.xpath("//label[contains(text(),'Comments')]/following::textarea[1]");
     private final By skillSaveButton = By.xpath("//div[@class='oxd-form-actions']//button[normalize-space()='Save']");
     
     // Languages Locators
     private final By addLanguagesButton = By.xpath("//h6[text()='Languages']/following::button[contains(@class,'oxd-button--text') and normalize-space()='Add'][1]");
-    private final By languageDropdown = By.xpath("//label[text()='Language']/following::div[contains(@class,'oxd-select-text')][1] | //div[contains(@class,'oxd-select-text-input') and contains(text(),'Select')]");
+    private final By languageDropdown = By.xpath("//label[normalize-space()='Language']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text-input')]");
     private final By fluencyDropdown = By.xpath("//label[contains(text(),'Fluency')]/following::div[contains(@class,'oxd-select-wrapper')][1]");
     private final By competencyDropdown = By.xpath("//label[contains(text(),'Competency')]/following::div[contains(@class,'oxd-select-wrapper')][1]");
     private final By languageCommentInput = By.xpath("//label[contains(text(),'Comments')]/following::textarea[1]");
@@ -52,7 +52,7 @@ public class QualificationsPage {
     
     // Licenses Locators
     private final By addLicensesButton = By.xpath("//h6[text()='License']/following::button[contains(@class,'oxd-button--text') and normalize-space()='Add'][1]");
-    private final By licenseTypeDropdown = By.xpath("//label[contains(text(),'License Type')]/following::div[contains(@class,'oxd-select-wrapper')][1]");
+    private final By licenseTypeDropdown = By.xpath("//label[contains(normalize-space(),'License Type')]/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text-input')]");
     private final By licenseNumberInput = By.xpath("//label[contains(text(),'License Number')]/following::input[1]");
     private final By licenseIssuedDateInput = By.xpath("//label[contains(text(),'Issued Date')]/following::input[1]");
     private final By licenseExpiryDateInput = By.xpath("//label[contains(text(),'Expiry Date')]/following::input[1]");
@@ -259,6 +259,8 @@ public class QualificationsPage {
     @Step("Select skill: {skill}")
     public QualificationsPage selectSkill(String skill) {
         if (skill != null && !skill.isEmpty()) {
+            // Wait for dropdown to be ready and scroll to it
+            waits.waitForElementClickable(skillDropdown);
             elementActions.selectFromDropdown(skillDropdown, skill);
         }
         return this;
@@ -312,7 +314,6 @@ public class QualificationsPage {
         if (language != null && !language.isEmpty()) {
             // Wait for dropdown to be ready and scroll to it
             waits.waitForElementClickable(languageDropdown);
-            elementActions.scrollToElement(languageDropdown);
             elementActions.selectFromDropdown(languageDropdown, language);
         }
         return this;
@@ -378,6 +379,8 @@ public class QualificationsPage {
     @Step("Select license type: {licenseType}")
     public QualificationsPage selectLicenseType(String licenseType) {
         if (licenseType != null && !licenseType.isEmpty()) {
+            // Wait for dropdown to be ready and scroll to it
+            waits.waitForElementClickable(licenseTypeDropdown);
             elementActions.selectFromDropdown(licenseTypeDropdown, licenseType);
         }
         return this;
@@ -439,7 +442,7 @@ public class QualificationsPage {
     @Step("Upload file: {filePath}")
     public QualificationsPage uploadFile(String filePath) {
         if (filePath != null && !filePath.isEmpty()) {
-            elementActions.uploadFile(fileInput, filePath);
+            elementActions.findElement(fileInput).sendKeys(filePath);
         }
         return this;
     }

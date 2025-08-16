@@ -23,7 +23,7 @@ public class AddEmployeePage {
     private final By middleNameInput = By.name("middleName");
     private final By lastNameInput = By.name("lastName");
     private final By employeeIdInput = By.xpath("//label[text()='Employee Id']/following::input[1]");
-    private final By uploadPictureInput = By.cssSelector("input[type='file']");
+    private final By uploadPictureInput = By.xpath("//button[contains(@class,'employee-image-action')]]");
     private final By createLoginToggle = By.cssSelector(".oxd-switch-input");
     private final By usernameInput = By.xpath("//label[text()='Username']/following::input[1]");
     private final By passwordInput = By.xpath("//label[text()='Password']/following::input[1]");
@@ -91,7 +91,8 @@ public class AddEmployeePage {
     @Step("Upload picture: {imagePath}")
     public AddEmployeePage uploadPicture(String imagePath) {
         if (imagePath != null && !imagePath.isEmpty()) {
-            elementActions.uploadFile(uploadPictureInput, imagePath);
+
+            elementActions.uploadFileByButton(uploadPictureInput, imagePath);
         }
         return this;
     }
@@ -152,6 +153,12 @@ public class AddEmployeePage {
     public PersonalDetailsPage clickSave() {
         elementActions.click(saveButton);
         return new PersonalDetailsPage(driver);
+    }
+
+    @Step("Click save button and stay on current page")
+    public AddEmployeePage clickSaveAndStay() {
+        elementActions.click(saveButton);
+        return this;
     }
 
     // Complete workflows

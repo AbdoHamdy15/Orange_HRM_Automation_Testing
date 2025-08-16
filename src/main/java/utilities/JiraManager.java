@@ -39,10 +39,6 @@ public class JiraManager {
         return String.format("[%s] %s - %s", browser.toUpperCase(), cleanTestName, storyValue);
     }
 
-    /**
-     * Find the latest log file in the logs directory
-     * @return Path to the latest log file, or null if not found
-     */
     private static String findLatestLogFile() {
         try {
             File logsDir = new File("test-outputs/Logs");

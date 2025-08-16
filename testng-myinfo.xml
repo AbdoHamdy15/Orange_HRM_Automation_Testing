@@ -3,22 +3,17 @@
 <suite name="MyInfo Test Suite">
     <listeners>
         <listener class-name="listeners.TestNGListeners"/>
-        <listener class-name="listeners.RetryListener"/>
+        <listener class-name="listeners.RetryBrokenTests"></listener>
     </listeners>
     <test name="MyInfo Tests">
-        <parameter name="browser" value="edge"/>
-        <groups>
-            <run>
-                <include name="myinfo"/>
-            </run>
-        </groups>
+        <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="tests.features.myInfo.PersonalDetailsTest"/>
             <class name="tests.features.myInfo.ContactDetailsTest"/>
+            <class name="tests.features.myInfo.QualificationsTest"/>
+            <class name="tests.features.myInfo.PersonalDetailsTest"/>
             <class name="tests.features.myInfo.EmergencyContactsTest"/>
             <class name="tests.features.myInfo.DependentsTest"/>
             <class name="tests.features.myInfo.ImmigrationTest"/>
-            <class name="tests.features.myInfo.QualificationsTest"/>
             <class name="tests.features.myInfo.MembershipsTest"/>
         </classes>
     </test>

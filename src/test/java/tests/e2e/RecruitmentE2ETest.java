@@ -37,14 +37,13 @@ public class RecruitmentE2ETest {
         DashboardPage dashboard = loginPage.navigateToLoginPage()
                                          .login("Admin", "admin123");
 
-                // Step 2: Navigate to Recruitment and click Vacancies tab
+        // Step 2: Navigate to Recruitment and click Vacancies tab
         RecruitmentPage recruitmentPage = dashboard.goToRecruitment()
                                                    .clickVacanciesTab();
 
         // Step 3: Add a new vacancy
         AddVacancyPage addVacancyPage = recruitmentPage.clickAddVacancy();
-        addVacancyPage.addVacancy("Software Testing Engineer", "QA Engineer",
-                                "Junior software tester (0 - 6 months experience)", "a", "Ranga  Akunuri", "1")
+        addVacancyPage.addVacancy("Software Testing Engineer", "QA Engineer", "Junior software tester (0 - 6 months experience)", "a", "Ranga  Akunuri", "1")
                      .clickSave();
 
         // Step 4: Navigate to Candidates from Vacancy page
@@ -53,11 +52,8 @@ public class RecruitmentE2ETest {
 
         // Step 5: Add candidate with complete details
         addCandidatePage.addCandidateComplete("Abdelrahman", "Hamdy", "Ibrahim", "abdelrahman.hamdy12799@gmail.com",
-                                           "+201033223147", "Software Engineer",
-                                           "E:\\Newest desktop\\ITI Material\\Abdelrahman_Hamdy_Software_Tester.pdf", "Selenium, Java, TestNG",
-                                           "Experienced QA engineer with strong automation skills", true)
-                       .clickSave()
-                       .assertSuccessToastDisplayed();
+                        "+201033223147", "Software Engineer", "E:\\Newest desktop\\ITI Material\\Abdelrahman_Hamdy_Software_Tester.pdf", "Selenium, Java, TestNG", "Experienced QA engineer with strong automation skills", true)
+                       .clickSave().assertSuccessToastDisplayed();
 
         // Step 6: Logout
         dashboard.logout()

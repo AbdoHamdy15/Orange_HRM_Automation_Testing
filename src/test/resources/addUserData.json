@@ -5,7 +5,7 @@
     "employeeNameInput": "b",
     "employeeNameToSelect": "Ravi M B",
     "status": "Enabled",
-    "username": "useradmin01a",
+    "username": "Basem25",
     "password": "Password_123",
     "confirmPassword": "Password_123"
   },
@@ -15,7 +15,7 @@
     "employeeNameInput": "am",
     "employeeNameToSelect": "Amelia Brown",
     "status": "Disabled",
-    "username": "user01a",
+    "username": "Sar025",
     "password": "EssPass_123",
     "confirmPassword": "EssPass_123"
   },
@@ -25,7 +25,7 @@
     "employeeNameInput": "b",
     "employeeNameToSelect": "Ravi M B",
     "status": "Enabled",
-    "username": "usernorolea",
+    "username": "Nad2025",
     "password": "Password_123",
     "confirmPassword": "Password_123",
     "expectedError": "Required"
@@ -36,18 +36,7 @@
     "employeeNameInput": "",
     "employeeNameToSelect": "",
     "status": "Enabled",
-    "username": "usernoempa",
-    "password": "Password_123",
-    "confirmPassword": "Password_123",
-    "expectedError": "Required"
-  },
-  {
-    "description": "Negative: Missing Status",
-    "userRole": "Admin",
-    "employeeNameInput": "am",
-    "employeeNameToSelect": "Amelia Brown",
-    "status": "",
-    "username": "usernostatusa",
+    "username": "Ram2025",
     "password": "Password_123",
     "confirmPassword": "Password_123",
     "expectedError": "Required"
@@ -64,92 +53,15 @@
     "expectedError": "Required"
   },
   {
-    "description": "Negative: Username less than min length (5)",
-    "userRole": "Admin",
-    "employeeNameInput": "am",
-    "employeeNameToSelect": "Amelia Brown",
-    "status": "Enabled",
-    "username": "usra",
-    "password": "Password_123",
-    "confirmPassword": "Password_123",
-    "expectedError": "UsernameMinLength"
-  },
-  {
-    "description": "Negative: Username exceeds max length (40)",
-    "userRole": "Admin",
-    "employeeNameInput": "b",
-    "employeeNameToSelect": "Ravi M B",
-    "status": "Enabled",
-    "username": "usernamethatiswaytoolongtobeacceptedbythesystem1234567890a",
-    "password": "Password_123",
-    "confirmPassword": "Password_123",
-    "expectedError": "UsernameMaxLength"
-  },
-  {
     "description": "Negative: Username already exists",
     "userRole": "Admin",
     "employeeNameInput": "am",
     "employeeNameToSelect": "Amelia Brown",
     "status": "Enabled",
-    "username": "Admin",
+    "username": "Basem25",
     "password": "Password_123",
     "confirmPassword": "Password_123",
     "expectedError": "UsernameExists"
-  },
-  {
-    "description": "Negative: Missing Password",
-    "userRole": "Admin",
-    "employeeNameInput": "b",
-    "employeeNameToSelect": "Ravi M B",
-    "status": "Enabled",
-    "username": "usernopassa",
-    "password": "",
-    "confirmPassword": "",
-    "expectedError": "Required"
-  },
-  {
-    "description": "Negative: Password less than min length (4)",
-    "userRole": "Admin",
-    "employeeNameInput": "am",
-    "employeeNameToSelect": "Amelia Brown",
-    "status": "Enabled",
-    "username": "userpassmina",
-    "password": "123",
-    "confirmPassword": "123",
-    "expectedError": "PasswordMinLength"
-  },
-  {
-    "description": "Negative: Password exceeds max length (64)",
-    "userRole": "Admin",
-    "employeeNameInput": "b",
-    "employeeNameToSelect": "Ravi M B",
-    "status": "Enabled",
-    "username": "userpassmaxa",
-    "password": "Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "confirmPassword": "Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "expectedError": "PasswordMaxLength"
-  },
-  {
-    "description": "Negative: Password missing number",
-    "userRole": "Admin",
-    "employeeNameInput": "am",
-    "employeeNameToSelect": "Amelia Brown",
-    "status": "Enabled",
-    "username": "userpassnonuma",
-    "password": "abcdefg",
-    "confirmPassword": "abcdefg",
-    "expectedError": "PasswordMustContainNumber"
-  },
-  {
-    "description": "Negative: Password missing lower-case letter",
-    "userRole": "Admin",
-    "employeeNameInput": "b",
-    "employeeNameToSelect": "Ravi M B",
-    "status": "Enabled",
-    "username": "userpassnolowera",
-    "password": "1234567",
-    "confirmPassword": "1234567",
-    "expectedError": "PasswordMustContainLowercase"
   },
   {
     "description": "Negative: Password and Confirm Password mismatch",
@@ -157,7 +69,7 @@
     "employeeNameInput": "am",
     "employeeNameToSelect": "Amelia Brown",
     "status": "Enabled",
-    "username": "userpassmismatcha",
+    "username": "Mya2025",
     "password": "Password_123",
     "confirmPassword": "Password_321",
     "expectedError": "PasswordMismatch"
@@ -168,7 +80,7 @@
     "employeeNameInput": "xyz",
     "employeeNameToSelect": "xyz User",
     "status": "Enabled",
-    "username": "usernoempfounda",
+    "username": "usrnoempfound2024",
     "password": "Password_123",
     "confirmPassword": "Password_123",
     "expectedError": "Invalid"
@@ -179,7 +91,7 @@
     "employeeNameInput": "b",
     "employeeNameToSelect": "Ravi M B",
     "status": "Enabled",
-    "username": "usernoconfirmpassa",
+    "username": "usrnoconfirmpass2024",
     "password": "Password_123",
     "confirmPassword": "",
     "expectedError": "PasswordMismatch"

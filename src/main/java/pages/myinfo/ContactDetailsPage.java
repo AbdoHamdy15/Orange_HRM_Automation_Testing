@@ -15,7 +15,7 @@ public class ContactDetailsPage {
     private final Waits waits;
 
     // Address Fields
-    private final By street1Input = By.xpath("//label[text()='Street 1']/following::input[1]");
+    private final By street1Input = By.xpath("//label[normalize-space()='Street 1']/ancestor::div[contains(@class,'oxd-input-group')]//input\n");
     private final By street2Input = By.xpath("//label[contains(text(),'Street 2')]/following::input[1]");
     private final By cityInput = By.xpath("//label[contains(text(),'City')]/following::input[1]");
     private final By stateInput = By.xpath("//label[contains(text(),'State')]/following::input[1]");
@@ -63,7 +63,7 @@ public class ContactDetailsPage {
     @Step("Enter street 1: {street1}")
     public ContactDetailsPage enterStreet1(String street1) {
         if (street1 != null && !street1.isEmpty()) {
-
+            waits.waitForElementClickable(street1Input);
             elementActions.clearField(street1Input);
             elementActions.type(street1Input, street1);
         }
@@ -161,6 +161,7 @@ public class ContactDetailsPage {
 
     @Step("Click save button")
     public ContactDetailsPage clickSave() {
+        elementActions.scrollToElement(saveButton);
         elementActions.click(saveButton);
         return this;
     }

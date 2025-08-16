@@ -102,7 +102,7 @@ public class QualificationsTest {
     @Severity(SeverityLevel.NORMAL)
     public void testValidSkills() {
         qualificationsPage.clickAddSkills()
-                          .selectSkill("Java")
+                          .selectSkill("JIRA")
                           .enterYearsOfExperience("5")
                           .enterSkillComment("Expert in Java development")
                           .clickSkillSave()
@@ -130,8 +130,8 @@ public class QualificationsTest {
     public void testValidLanguages() {
         qualificationsPage.clickAddLanguages()
                           .selectLanguage("English")
-                          .selectFluency("Speaking")
-                          .selectCompetency("Excellent")
+                          .selectFluency("Fluent")
+                          .selectCompetency("Advanced")
                           .enterLanguageComment("Native speaker")
                           .clickLanguageSave()
                           .assertSuccessToastDisplayed();
@@ -158,7 +158,7 @@ public class QualificationsTest {
     @Severity(SeverityLevel.NORMAL)
     public void testValidLicenses() {
         qualificationsPage.clickAddLicenses()
-                          .selectLicenseType("Cisco Certified Network Associate (CCNA)")
+                          .selectLicenseType("Certified Digital Marketing Professional (CDMP)")
                           .enterLicenseNumber("DL123456789")
                           .setLicenseIssuedDate("2020-01-15")
                           .setLicenseExpiryDate("2025-01-15")

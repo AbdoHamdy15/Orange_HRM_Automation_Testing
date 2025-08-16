@@ -162,25 +162,5 @@ public class AllureUtils {
         }
     }
 
-    public static void createEnvironmentJson() {
-        try {
-            File allureResultsDir = new File(ALLURE_RESULTS_PATH);
-            if (!allureResultsDir.exists()) {
-                allureResultsDir.mkdirs();
-            }
-            File environmentFile = new File(ALLURE_RESULTS_PATH + "/environment.json");
-            String environmentJson = "{\n" +
-                    "  \"Browser\": \"Chrome\",\n" +
-                    "  \"OS\": \"Windows 10 Pro\",\n" +
-                    "  \"Java Version\": \"22\",\n" +
-                    "  \"Test Environment\": \"OrangeHRM Demo\",\n" +
-                    "  \"Framework\": \"TestNG\",\n" +
-                    "  \"Tester\": \"Abdelrahman Hamdy\"\n" +
-                    "}";
-            java.nio.file.Files.write(environmentFile.toPath(), environmentJson.getBytes());
-            LogsUtil.info("Environment.json created successfully");
-        } catch (Exception e) {
-            LogsUtil.error("Failed to create environment.json: " + e.getMessage());
-        }
-    }
+
 }

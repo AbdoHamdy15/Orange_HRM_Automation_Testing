@@ -2,7 +2,7 @@
   {
     "description": "Valid candidate name ",
     "candidateNameInput": "a",
-    "candidateNameToSelect": "Manu K M",
+    "candidateNameToSelect": "Abdelrahman Hamdy Ibrahim",
     "jobTitle": "",
     "vacancy": "",
     "hiringManager": "",
@@ -28,7 +28,7 @@
   {
     "description": "Valid scenario with all fields chosen",
     "candidateNameInput": "a",
-    "candidateNameToSelect": "Manu K M",
+    "candidateNameToSelect": "Abdelrahman Hamdy Ibrahim",
     "jobTitle": "Software Engineer",
     "vacancy": "Senior QA Lead",
     "hiringManager": "",

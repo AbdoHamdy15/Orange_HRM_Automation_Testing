@@ -63,13 +63,6 @@ public class AddUserTest {
         }
     }
 
-    @AfterMethod
-    public void teardown() {
-        if (driver != null) {
-            driver.teardown();
-        }
-    }
-
     @DataProvider(name = "addUserData")
     public Object[][] addUserData() {
         List<HashMap<String, String>> data = JsonUtils.readJsonDataAsList("src/test/resources/addUserData.json");
@@ -77,4 +70,10 @@ public class AddUserTest {
     }
 
 
+    @AfterMethod
+    public void teardown() {
+        if (driver != null) {
+            driver.teardown();
+        }
+    }
 } 

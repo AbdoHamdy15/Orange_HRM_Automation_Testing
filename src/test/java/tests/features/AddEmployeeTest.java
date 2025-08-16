@@ -24,8 +24,6 @@ public class AddEmployeeTest {
     private GUIDriver driver;
     private AddEmployeePage addEmployeePage;
 
-    public AddEmployeeTest(HashMap<String, String> employeeData) {
-    }
 
     @BeforeMethod
     public void setup() {
@@ -58,17 +56,8 @@ public class AddEmployeeTest {
             addEmployeePage.uploadPicture(employee.get("imagePath"));
         }
 
-        // Handle login details if enabled
-        if (Boolean.parseBoolean(String.valueOf(employee.get("withLogin")))) {
-            addEmployeePage.enableLoginDetails()
-                           .enterUsername(employee.get("username"))
-                           .enterPassword(employee.get("password"))
-                           .enterConfirmPassword(employee.getOrDefault("confirmPassword", employee.get("password")))
-                           .setStatus(Status.valueOf(employee.get("status")));
-        }
-
-        // Click save and get PersonalDetailsPage
-        pages.myinfo.PersonalDetailsPage personalDetailsPage = addEmployeePage.clickSave();
+        // Click save and stay on current page for assertions
+        addEmployeePage.clickSaveAndStay();
 
         // Assertions
         String expectedError = employee.getOrDefault("expectedError", "");

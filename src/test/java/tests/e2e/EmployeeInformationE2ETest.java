@@ -62,7 +62,7 @@ public class EmployeeInformationE2ETest {
                 .clickSave()
                 .assertSuccessToastDisplayed();
 
-        // Step 5: Logout
+        // Step 4: Logout
         dashboard.logout()
                 .assertLoginPageDisplayed();
     }

@@ -36,7 +36,7 @@ public class LoginTest {
     @Test(dataProvider = "invalidLoginData", priority = 2, groups = {"auth", "login"})
     @Story("Invalid Login")
     @Description("Test login with invalid credentials and verify error messages")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.CRITICAL)
     public void invalidLoginTest(String username, String password, String expectedError, String errorType) {
         LoginPage loginPage = new LoginPage(driver);
         
